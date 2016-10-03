@@ -3,34 +3,28 @@
 
   <group android:checkableBehavior="single">
     <item
-      android:id="@+id/nav_camera"
+      android:id="@+id/nav_Home"
       android:icon="@drawable/ic_menu_camera"
-      android:title="Import"/>
+      android:title="Home"></item>
     <item
-      android:id="@+id/nav_gallery"
+      android:id="@+id/nav_competitions"
       android:icon="@drawable/ic_menu_gallery"
-      android:title="Gallery"/>
+      android:title="Competitions"/>
     <item
-      android:id="@+id/nav_slideshow"
+      android:id="@+id/nav_register"
       android:icon="@drawable/ic_menu_slideshow"
-      android:title="Slideshow"/>
+      android:title="Register"/>
     <item
-      android:id="@+id/nav_manage"
+      android:id="@+id/nav_past_line"
       android:icon="@drawable/ic_menu_manage"
-      android:title="Tools"/>
-  </group>
-
-  <item android:title="Communicate">
-    <menu>
+      android:title="Past Line Up"/>
       <item
-        android:id="@+id/nav_share"
+        android:id="@+id/nav_sponsors"
         android:icon="@drawable/ic_menu_share"
-        android:title="Share"/>
+        android:title="Sponsors"/>
       <item
-        android:id="@+id/nav_send"
+        android:id="@+id/nav_contact"
         android:icon="@drawable/ic_menu_send"
-        android:title="Send"/>
-    </menu>
-  </item>
-
+        android:title="Contact Us"/>
+</group>
 </menu>
