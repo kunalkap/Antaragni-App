@@ -43,7 +43,7 @@ public class GridFragment extends Fragment {
     View v=inflater.inflate(R.layout.fragment_grid, container, false);
     GridView gridview = (GridView) v.findViewById(R.id.grid_photos);
     setImage(mParam1);
-    ImageAdapter recylclerAdapter=new ImageAdapter(mDrawable,getActivity());
+    ImageAdapter recylclerAdapter=new ImageAdapter(mDrawable,getActivity(),false);
     gridview.setAdapter(recylclerAdapter);
     return v;
   }

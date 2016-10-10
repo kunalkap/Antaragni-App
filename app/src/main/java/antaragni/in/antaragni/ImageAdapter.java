@@ -21,6 +21,7 @@ import java.util.zip.Inflater;
 
 public class ImageAdapter extends BaseAdapter {
   private Context mContext;
+  public boolean mHome;
   public Drawable mDrawable;
   public Object getItem(int position) {
     return null;
@@ -41,8 +42,12 @@ public class ImageAdapter extends BaseAdapter {
   public View getView(int position, View convertView, ViewGroup parent) {
     View imageView;
     if (convertView == null) {
+      if(mHome)
       imageView = LayoutInflater.from(parent.getContext())
-          .inflate(R.layout.main_activity_card, parent, false);
+          .inflate(R.layout.home_card, parent, false);
+      else
+      imageView= LayoutInflater.from(parent.getContext()).inflate(R.layout.main_activity_card,parent,false);
+
       ImageAdapter.ViewHolder vh = new ImageAdapter.ViewHolder(imageView);
       imageView.setTag(vh);
     } else {
@@ -54,9 +59,10 @@ public class ImageAdapter extends BaseAdapter {
   }
 
 
-  public ImageAdapter(Drawable drawable,Context c) {
+  public ImageAdapter(Drawable drawable,Context c,boolean home) {
     mDrawable=drawable;
     mContext = c;
+    mHome=home;
   }
 
   // Return the size of your dataset (invoked by the layout manager)
