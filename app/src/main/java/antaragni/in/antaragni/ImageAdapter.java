@@ -30,11 +30,9 @@ public class ImageAdapter extends BaseAdapter {
     return 0;
   }
   public class ViewHolder{
-    public CardView mCard;
     public ImageView img;
 
     public ViewHolder(View v) {
-      this.mCard = (CardView) v.findViewById(R.id.card_view);
       this.img= (ImageView) v.findViewById(R.id.image);
 
     }

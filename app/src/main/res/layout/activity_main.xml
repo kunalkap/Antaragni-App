@@ -21,6 +21,11 @@
     android:layout_gravity="start"
     android:fitsSystemWindows="true"
     app:headerLayout="@layout/nav_header_main"
-    app:menu="@menu/activity_main_drawer"/>
+    app:menu="@menu/activity_main_drawer"
+    android:background="@color/wallet_highlighted_text_holo_light"
+    android:theme="@style/Base.Widget.AppCompat.PopupMenu.Overflow"
+    app:itemTextColor="@color/cardview_light_background"
+    app:itemIconTint="@color/cardview_light_background"
+    />
 
 </android.support.v4.widget.DrawerLayout>

@@ -1,4 +1,4 @@
-package antaragni.in.antaragni;
+package antaragni.in.antaragni.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,9 +13,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
+import antaragni.in.antaragni.R;
 
 public class register extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
