@@ -1,5 +1,6 @@
 package antaragni.in.antaragni;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity
   public void onFragmentInteraction(Uri uri){
 
   }
+
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     // Handle action bar item clicks here. The action bar will
@@ -85,6 +87,12 @@ public class MainActivity extends AppCompatActivity
 
     return super.onOptionsItemSelected(item);
   }
+
+  public void init() {
+    Intent i = new Intent(MainActivity.this , Login.class);
+    startActivity(i);
+  }
+
 
   @SuppressWarnings("StatementWithEmptyBody")
   @Override
@@ -117,7 +125,7 @@ public class MainActivity extends AppCompatActivity
           .addToBackStack(null).commit();
 
     } else if (id == R.id.nav_register) {
-
+         init();
 
     } else if (id == R.id.nav_sponsors) {
       Fragment f= new MainFragment();
@@ -131,4 +139,5 @@ public class MainActivity extends AppCompatActivity
     drawer.closeDrawer(GravityCompat.START);
     return true;
   }
+
 }
