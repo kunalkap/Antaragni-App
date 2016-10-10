@@ -31,7 +31,7 @@ public class MainFragment extends Fragment {
     // Inflate the layout for this fragment
     View v= inflater.inflate(R.layout.fragment_main, container, false);
     mImageRecycler = (ListView) v.findViewById(R.id.imageView);
-    mRecyclerAdapter = new ImageAdapter(getResources().getDrawable(R.drawable.antaragni_logo),getActivity());
+    mRecyclerAdapter = new ImageAdapter(getResources().getDrawable(R.drawable.antaragni_logo),getActivity(),true);
     mImageRecycler.setAdapter(mRecyclerAdapter);
     return v;
   }

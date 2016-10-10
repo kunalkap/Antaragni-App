@@ -6,19 +6,28 @@
 
 
     <android.support.v7.widget.CardView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentTop="true"
+      android:layout_marginLeft="50dp"
+      android:layout_marginRight="50dp"
+      android:alpha=".75"
+      android:layout_marginTop="10dp"
+      android:paddingLeft="4dp"
+      android:paddingRight="4dp"
+      android:elevation="1dp">
+      <LinearLayout
         android:layout_width="match_parent"
+        android:orientation="vertical"
         android:layout_height="match_parent"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:alpha=".75">
-
+        android:weightSum="1">
         <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="match_parent"
-            android:layout_height="160dp"
-            app:srcCompat="@drawable/reg" />
+          android:id="@+id/imageView1"
+          android:layout_width="325dp"
+          android:layout_height="129dp"
+          android:src="@drawable/reg"
+          />
 
         <TextView
             android:id="@+id/editText1"
@@ -26,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_marginTop="170dp"
+            android:layout_marginTop="30dp"
             android:inputType="textMultiLine"
             android:text="This is the official Registration Portal for Antaragni 2016. You can register to become a campus ambassador, and/or participate in roadtrips and the main festival." />
 
@@ -35,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="270dp"
+            android:layout_marginTop="30dp"
             android:alpha="1"></com.facebook.login.widget.LoginButton>
 
 
@@ -44,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="320dp"
+            android:layout_marginTop="30dp"
             android:ems="10"
             android:inputType="textMultiLine"
             android:text="For any queries, contact the Hospitality Coordinator(s)"
@@ -55,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="430dp"
+            android:layout_marginTop="10dp"
             android:ems="10"
             android:inputType="textMultiLine"
             android:text="Saurabh Vasu	07755047835"
@@ -66,7 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="460dp"
+            android:layout_marginTop="10dp"
             android:ems="10"
             android:inputType="textMultiLine"
             android:text="Yash Sharma	09005533960"
@@ -77,7 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="490dp"
+            android:layout_marginTop="10dp"
             android:ems="10"
             android:inputType="textMultiLine"
             android:text="Saiyam Surana	07755057949"
@@ -88,13 +97,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="400dp"
+            android:layout_marginTop="10dp"
             android:ems="10"
             android:inputType="textMultiLine"
             android:text="Shivam Singhal	07500057251"
             android:textAlignment="center" />
 
-
+      </LinearLayout>
     </android.support.v7.widget.CardView>
 
 
