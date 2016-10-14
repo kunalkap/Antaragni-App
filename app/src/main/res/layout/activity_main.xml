@@ -22,10 +22,9 @@
     android:fitsSystemWindows="true"
     app:headerLayout="@layout/nav_header_main"
     app:menu="@menu/activity_main_drawer"
-    android:background="@color/wallet_highlighted_text_holo_light"
-    android:theme="@style/Base.Widget.AppCompat.PopupMenu.Overflow"
-    app:itemTextColor="@color/cardview_light_background"
-    app:itemIconTint="@color/cardview_light_background"
-    />
+    android:background="?android:attr/colorBackground"
+    app:itemIconTint="@android:color/holo_red_dark"
+    app:itemTextColor="@android:color/holo_red_dark"
+    android:theme="@style/AppTheme"/>
 
 </android.support.v4.widget.DrawerLayout>

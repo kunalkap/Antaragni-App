@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+
   android:layout_width="match_parent"
-  android:layout_height="@dimen/nav_header_height"
-  android:gravity="center|center_horizontal"
-  android:orientation="vertical"
-  android:theme="@style/ThemeOverlay.AppCompat.Dark"
-  android:weightSum="1">
+  android:layout_height="151dp"
+  android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+  <ImageView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:srcCompat="@drawable/huesofbliss"
+    android:id="@+id/imageView2"
+    android:adjustViewBounds="true"
+    android:cropToPadding="true"
+    android:scaleType="centerCrop"/>
 
   <com.github.siyamed.shapeimageview.CircularImageView
     android:id="@+id/imageView"
-    android:layout_width="141dp"
+    android:layout_width="136dp"
     android:layout_height="136dp"
-    android:layout_weight="0.46"/>
-</LinearLayout>
+    android:layout_centerInParent="true"/>
+</RelativeLayout>
