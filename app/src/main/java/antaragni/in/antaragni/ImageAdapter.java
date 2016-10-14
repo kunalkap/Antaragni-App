@@ -21,7 +21,7 @@ import java.util.zip.Inflater;
 
 public class ImageAdapter extends BaseAdapter {
   private Context mContext;
-  public boolean mHome;
+  public String currentTab;
   public Drawable mDrawable;
   public Object getItem(int position) {
     return null;
@@ -42,12 +42,19 @@ public class ImageAdapter extends BaseAdapter {
   public View getView(int position, View convertView, ViewGroup parent) {
     View imageView;
     if (convertView == null) {
-      if(mHome)
+      if(currentTab.equals("home"))
       imageView = LayoutInflater.from(parent.getContext())
           .inflate(R.layout.home_card, parent, false);
-      else
-      imageView= LayoutInflater.from(parent.getContext()).inflate(R.layout.main_activity_card,parent,false);
-
+      else {
+        imageView = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_activity_card, parent, false);
+        if (currentTab.equals("competitions"))
+        imageView.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+            //// TODO: 10/10/16 open scheduler activity 
+          }
+        });
+      }
       ImageAdapter.ViewHolder vh = new ImageAdapter.ViewHolder(imageView);
       imageView.setTag(vh);
     } else {
@@ -59,10 +66,10 @@ public class ImageAdapter extends BaseAdapter {
   }
 
 
-  public ImageAdapter(Drawable drawable,Context c,boolean home) {
+  public ImageAdapter(Drawable drawable,Context c,String tab) {
     mDrawable=drawable;
     mContext = c;
-    mHome=home;
+    currentTab=tab;
   }
 
   // Return the size of your dataset (invoked by the layout manager)

@@ -1,4 +1,4 @@
-package antaragni.in.antaragni;
+package antaragni.in.antaragni.Fragments;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -9,21 +9,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
+
+import antaragni.in.antaragni.ImageAdapter;
+import antaragni.in.antaragni.OnFragmentInteractionListener;
+import antaragni.in.antaragni.R;
 
 
 public class GridFragment extends Fragment {
 
   private static final String ARG_PARAM1 = "param1";
+  private static final String TAB_PARAM = "param2";
   private String mParam1;
   private OnFragmentInteractionListener mListener;
+  private String tab;
   private Drawable mDrawable;
   private GridView mGridView;
-  public static GridFragment newInstance(String param1) {
+  public static GridFragment newInstance(String param1,String param2) {
     GridFragment fragment = new GridFragment();
     Bundle args = new Bundle();
     args.putString(ARG_PARAM1, param1);
+    args.putString(TAB_PARAM,param2);
     fragment.setArguments(args);
     return fragment;
   }
@@ -33,6 +38,7 @@ public class GridFragment extends Fragment {
     super.onCreate(savedInstanceState);
     if (getArguments() != null) {
       mParam1 = getArguments().getString(ARG_PARAM1);
+      tab=getArguments().getString(TAB_PARAM);
     }
   }
 
@@ -43,7 +49,7 @@ public class GridFragment extends Fragment {
     View v=inflater.inflate(R.layout.fragment_grid, container, false);
     GridView gridview = (GridView) v.findViewById(R.id.grid_photos);
     setImage(mParam1);
-    ImageAdapter recylclerAdapter=new ImageAdapter(mDrawable,getActivity(),false);
+    ImageAdapter recylclerAdapter=new ImageAdapter(mDrawable,getActivity(),tab);
     gridview.setAdapter(recylclerAdapter);
     return v;
   }

@@ -1,4 +1,4 @@
-package antaragni.in.antaragni;
+package antaragni.in.antaragni.Fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -12,6 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
+
+import antaragni.in.antaragni.ImageAdapter;
+import antaragni.in.antaragni.OnFragmentInteractionListener;
+import antaragni.in.antaragni.R;
 
 
 public class MainFragment extends Fragment {
@@ -31,7 +35,7 @@ public class MainFragment extends Fragment {
     // Inflate the layout for this fragment
     View v= inflater.inflate(R.layout.fragment_main, container, false);
     mImageRecycler = (ListView) v.findViewById(R.id.imageView);
-    mRecyclerAdapter = new ImageAdapter(getResources().getDrawable(R.drawable.antaragni_logo),getActivity(),true);
+    mRecyclerAdapter = new ImageAdapter(getResources().getDrawable(R.drawable.antaragni_logo),getActivity(),"home");
     mImageRecycler.setAdapter(mRecyclerAdapter);
     return v;
   }

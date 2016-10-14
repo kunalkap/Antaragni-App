@@ -13,12 +13,15 @@
       android:label="@string/app_name"
       android:theme="@style/AppTheme.NoActionBar">
     </activity>
-    <meta-data android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
+
+    <meta-data
+      android:name="com.facebook.sdk.ApplicationId"
+      android:value="@string/facebook_app_id"/>
+
     <activity
-            android:name=".Activities.register"
-            android:label="@string/title_activity_register"
-            android:theme="@style/AppTheme.NoActionBar" />
+      android:name=".Activities.register"
+      android:label="@string/title_activity_register"
+      android:theme="@style/AppTheme.NoActionBar"/>
     <activity android:name=".Activities.Login">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
@@ -30,11 +33,18 @@
       android:name="com.facebook.CustomTabActivity"
       android:exported="true">
       <intent-filter>
-        <action android:name="android.intent.action.VIEW" />
-        <category android:name="android.intent.category.DEFAULT" />
-        <category android:name="android.intent.category.BROWSABLE" />
-        <data android:scheme="@string/fb_login_protocol_scheme" />
+        <action android:name="android.intent.action.VIEW"/>
+
+        <category android:name="android.intent.category.DEFAULT"/>
+        <category android:name="android.intent.category.BROWSABLE"/>
+
+        <data android:scheme="@string/fb_login_protocol_scheme"/>
       </intent-filter>
+    </activity>
+    <activity
+      android:name=".Activities.EventScheduler"
+      android:label="@string/title_activity_event_scheduler"
+      android:theme="@style/AppTheme.NoActionBar">
     </activity>
   </application>
 

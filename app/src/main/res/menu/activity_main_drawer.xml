@@ -11,10 +11,6 @@
       android:icon="@drawable/ic_menu_gallery"
       android:title="Competitions"/>
     <item
-      android:id="@+id/nav_register"
-      android:icon="@drawable/ic_menu_slideshow"
-      android:title="Register"/>
-    <item
       android:id="@+id/nav_past_line"
       android:icon="@drawable/ic_menu_manage"
       android:title="Past Line Up"/>

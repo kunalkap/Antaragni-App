@@ -11,7 +11,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,25 +20,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
 
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.HttpMethod;
 import com.facebook.login.LoginManager;
-import com.facebook.login.widget.ProfilePictureView;
 import com.github.siyamed.shapeimageview.CircularImageView;
 
 import org.json.JSONObject;
-import org.xml.sax.InputSource;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 
-import antaragni.in.antaragni.GridFragment;
-import antaragni.in.antaragni.MainFragment;
+import antaragni.in.antaragni.Fragments.GridFragment;
+import antaragni.in.antaragni.Fragments.MainFragment;
 import antaragni.in.antaragni.OnFragmentInteractionListener;
 import antaragni.in.antaragni.R;
 
@@ -98,7 +92,6 @@ public class MainActivity extends AppCompatActivity
             }
           }
         }).executeAsync();
-
   }
 
   class RetrievePic extends AsyncTask<String, Void, Bitmap> {
@@ -158,11 +151,6 @@ public class MainActivity extends AppCompatActivity
     return super.onOptionsItemSelected(item);
   }
 
-  public void init() {
-    Intent i = new Intent(MainActivity.this , Login.class);
-    startActivity(i);
-  }
-
 
   @SuppressWarnings("StatementWithEmptyBody")
   @Override
@@ -171,7 +159,7 @@ public class MainActivity extends AppCompatActivity
     int id = item.getItemId();
     Drawable image;
     if (id == R.id.nav_competitions) {
-      Fragment f= GridFragment.newInstance("comp");
+      Fragment f= GridFragment.newInstance("comp","competitions");
       fragmentManager.beginTransaction()
           .replace(R.id.content_main,f)
           .addToBackStack(null).commit();
@@ -189,13 +177,10 @@ public class MainActivity extends AppCompatActivity
           .addToBackStack(null).commit();
 
     } else if (id == R.id.nav_past_line) {
-      Fragment f= GridFragment.newInstance("past");
+      Fragment f= GridFragment.newInstance("past","pastline");
       fragmentManager.beginTransaction()
           .replace(R.id.content_main,f)
           .addToBackStack(null).commit();
-
-    } else if (id == R.id.nav_register) {
-         init();
 
     } else if (id == R.id.nav_sponsors) {
       Fragment f= new MainFragment();

@@ -4,7 +4,7 @@
              android:layout_height="match_parent"
              android:paddingLeft="10dp"
              android:paddingRight="10dp"
-             tools:context="antaragni.in.antaragni.GridFragment">
+             tools:context="antaragni.in.antaragni.Fragments.GridFragment">
 
   <GridView
     android:layout_width="fill_parent"
