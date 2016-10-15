@@ -5,6 +5,7 @@
   <color name="colorAccent">#01daf6</color>
   <color name="holo_brown">#8b6901</color>
   <color name="orange_dark">#f45e01</color>
-  <color name="red">#f17a0a</color>
+  <color name="red">#ffb012</color>
   <color name="redd">#d30202</color>
+  <color name="orange_light">#fff0dc</color>
 </resources>

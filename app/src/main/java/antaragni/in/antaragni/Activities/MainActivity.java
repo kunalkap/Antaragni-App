@@ -32,6 +32,7 @@ import org.json.JSONObject;
 
 import java.net.URL;
 
+import antaragni.in.antaragni.Fragments.Competitions;
 import antaragni.in.antaragni.Fragments.GridFragment;
 import antaragni.in.antaragni.Fragments.MainFragment;
 import antaragni.in.antaragni.OnFragmentInteractionListener;
@@ -159,7 +160,7 @@ public class MainActivity extends AppCompatActivity
     int id = item.getItemId();
     Drawable image;
     if (id == R.id.nav_competitions) {
-      Fragment f= GridFragment.newInstance("comp","competitions");
+      Fragment f= Competitions.newInstance("comp","competitions");
       fragmentManager.beginTransaction()
           .replace(R.id.content_main,f)
           .addToBackStack(null).commit();

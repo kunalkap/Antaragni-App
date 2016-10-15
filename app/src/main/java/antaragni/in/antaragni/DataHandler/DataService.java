@@ -1,12 +1,13 @@
 package antaragni.in.antaragni.DataHandler;
 
+import java.util.ArrayList;
 import java.util.Map;
 
-import antaragni.in.antaragni.DataModels.Event;
+import antaragni.in.antaragni.DataModels.Category;
+import antaragni.in.antaragni.DataModels.subEvent;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -19,10 +20,10 @@ import rx.Observable;
 
 public interface DataService {
   @GET("app/{event}")
-  Observable<Event> getEvent(@Path("event") String eventName, @QueryMap Map<String, String> options);
+  Observable<subEvent> getEvent(@Path("event") String eventName);
 
   @GET("database/events")
-  Observable allEvents(@QueryMap Map<String, String> options);
+  Observable<ArrayList<Category>> allEvents();
 
   @GET("database/sponsors")
   Observable allSponsors(@QueryMap Map<String, String> options);
@@ -34,7 +35,7 @@ public interface DataService {
   Observable getSchedule(@QueryMap Map<String, String> options);
 
   @GET("database/lineup")
-  Observable pastLineup(@QueryMap Map<String, String> options);
+  Observable<ArrayList> pastLineup();
 
   @GET("database/mainpage")
   Observable getHomePage(@QueryMap Map<String, String> options);

@@ -35,7 +35,6 @@ public class RetrofitAddOn {
   private static RetrofitAddOn mInstance;
   OkHttpClient okHttpClient;
   HttpLoggingInterceptor interceptor;
-  CookieManager cookieManager;
   Retrofit mRetrofit;
 
   private RetrofitAddOn(final Context context) {

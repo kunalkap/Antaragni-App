@@ -9,10 +9,14 @@ import antaragni.in.antaragni.DataHandler.DataManager;
  */
 
 public class AntaragniApplication extends Application {
-  DataManager mDataManager;
+  public DataManager mDataManager;
   @Override
   public void onCreate(){
     super.onCreate();
     mDataManager=new DataManager(getApplicationContext());
+  }
+
+  public DataManager getDataManager(){
+    return mDataManager;
   }
 }

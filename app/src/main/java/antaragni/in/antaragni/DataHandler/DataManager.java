@@ -1,15 +1,12 @@
 package antaragni.in.antaragni.DataHandler;
 
-import android.app.Application;
 import android.content.Context;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
-import antaragni.in.antaragni.DataModels.Event;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
+import antaragni.in.antaragni.DataModels.Category;
+import antaragni.in.antaragni.DataModels.subEvent;
 import rx.Observable;
 import rx.Scheduler;
 
@@ -25,11 +22,15 @@ public class DataManager {
     mContext=context;
   }
 
-  public Observable<Event> getEvent(String eventName, Map<String, String> options) {
-    return mService.getEvent(eventName, options);
+  public Scheduler getScheduler(){
+    return mSubscribeScheduler;
   }
-  public Observable<ArrayList> allEvents(Map<String, String> options) {
-    return mService.allEvents(options);
+
+  public Observable<subEvent> getEvent(String eventName, Map<String, String> options) {
+    return mService.getEvent(eventName);
+  }
+  public Observable<ArrayList<Category>> allEvents() {
+    return mService.allEvents();
   }
   public Observable<ArrayList> allSponsors(Map<String, String> options) {
     return mService.allSponsors(options);
@@ -39,8 +40,8 @@ public class DataManager {
   }public Observable<ArrayList> getSchedule(Map<String, String> options) {
     return mService.getSchedule( options);
   }
-  public Observable<ArrayList> pastlineup( Map<String, String> options) {
-    return mService.pastLineup(options);
+  public Observable<ArrayList> pastlineup() {
+    return mService.pastLineup();
   }
   public Observable<ArrayList> getHomePage(Map<String, String> options) {
     return mService.getHomePage(options);
