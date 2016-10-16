@@ -19,14 +19,16 @@ import antaragni.in.antaragni.Adapters.ImageAdapter;
 import antaragni.in.antaragni.AntaragniApplication;
 import antaragni.in.antaragni.DataHandler.DataManager;
 import antaragni.in.antaragni.DataHandler.DataService;
+import antaragni.in.antaragni.DataHandler.RetrofitAddOn;
 import antaragni.in.antaragni.DataModels.Category;
 import antaragni.in.antaragni.OnFragmentInteractionListener;
 import antaragni.in.antaragni.R;
-import retrofit.RestAdapter;
-import retrofit.RetrofitError;
-import retrofit2.Response;
+import retrofit2.adapter.rxjava.HttpException;
+import rx.Observable;
 import rx.Subscriber;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
 import static com.google.android.gms.wearable.DataMap.TAG;
@@ -63,7 +65,11 @@ public class Competitions extends Fragment {
       mParam1 = getArguments().getString(ARG_PARAM1);
       tab=getArguments().getString(TAB_PARAM);
     }
+    mSubscriptions=new CompositeSubscription();
+    RetrofitAddOn retrofitAddOn= RetrofitAddOn.getInstance(getActivity().getApplicationContext());
     mDataManager=new DataManager(getActivity().getApplicationContext());
+    mDataManager.mService=retrofitAddOn.newUserService();
+    loadData();
   }
 
   @Override
@@ -73,6 +79,7 @@ public class Competitions extends Fragment {
     View v=inflater.inflate(R.layout.fragment_competitions, container, false);
     ListView listview = (ListView) v.findViewById(R.id.category);
     setImage();
+    loadData();
     ImageAdapter recylclerAdapter=new ImageAdapter(null,eventsList,getActivity(),"competitions");
     listview.setAdapter(recylclerAdapter);
     return v;
@@ -80,5 +87,34 @@ public class Competitions extends Fragment {
   private void setImage(){
       mDrawable=getResources().getDrawable(R.drawable.comp1);
   }
+  public void loadData() {
+    mSubscriptions.add(mDataManager.allEvents()
+        .subscribeOn(Schedulers.io()) // optional if you do not wish to override the default behavior
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Subscriber<ArrayList<Category>>() {
+          @Override
+          public void onCompleted() {
 
+          }
+
+          @Override
+          public void onError(Throwable e) {
+            // cast to retrofit.HttpException to get the response code
+            if (e instanceof HttpException) {
+              HttpException response = (HttpException) e;
+              int code = response.code();
+            }
+          }
+
+          @Override
+          public void onNext(ArrayList<Category> list) {
+            eventsList=list;
+          }
+        }));
+  }
+  @Override
+  public void onDestroy() {
+    this.mSubscriptions.unsubscribe();
+    super.onDestroy();
+  }
 }

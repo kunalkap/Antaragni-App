@@ -26,6 +26,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by varun on 15/10/16.
@@ -53,7 +54,7 @@ public class RetrofitAddOn {
     okHttpClient = okHttpClientBuilder.build();
     mRetrofit = new Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create(gson))
-        .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+        .addCallAdapterFactory(RxJavaCallAdapterFactory.createWithScheduler(Schedulers.io()))
         .baseUrl("http://www.antaragni.in/")
         .client(okHttpClient)
         .build();

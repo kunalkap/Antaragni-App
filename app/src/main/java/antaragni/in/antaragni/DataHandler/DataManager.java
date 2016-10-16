@@ -16,7 +16,7 @@ import rx.Scheduler;
 
 public class DataManager {
   protected Scheduler mSubscribeScheduler;
-  protected DataService mService;
+  public DataService mService;
   public Context mContext;
   public DataManager(Context context){
     mContext=context;
