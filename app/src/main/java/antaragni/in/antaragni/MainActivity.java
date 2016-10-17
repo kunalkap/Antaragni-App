@@ -18,7 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
-    implements NavigationView.OnNavigationItemSelectedListener, OnFragmentInteractionListener {
+    implements NavigationView.OnNavigationItemSelectedListener,OnFragmentInteractionListener{
   FragmentManager fragmentManager;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -126,7 +126,13 @@ public class MainActivity extends AppCompatActivity
           .addToBackStack(null).commit();
 
     }
+    else if (id == R.id.nav_map) {
+       MapFragment fragment= new MapFragment();
+      fragmentManager.beginTransaction()
+              .replace(R.id.content_main,fragment)
+              .addToBackStack(null).commit();
 
+    }
     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
     drawer.closeDrawer(GravityCompat.START);
     return true;
