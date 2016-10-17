@@ -45,6 +45,7 @@ public class Competitions extends Fragment {
   private Drawable mDrawable;
   private CompositeSubscription mSubscriptions;
   private DataManager mDataManager;
+  public ListView listview;git
   public ArrayList<Category> eventsList;
   public static Competitions newInstance(String param1,String param2) {
     Competitions fragment = new Competitions();
@@ -79,9 +80,6 @@ public class Competitions extends Fragment {
     View v=inflater.inflate(R.layout.fragment_competitions, container, false);
     ListView listview = (ListView) v.findViewById(R.id.category);
     setImage();
-    loadData();
-    ImageAdapter recylclerAdapter=new ImageAdapter(null,eventsList,getActivity(),"competitions");
-    listview.setAdapter(recylclerAdapter);
     return v;
   }
   private void setImage(){
@@ -94,7 +92,7 @@ public class Competitions extends Fragment {
         .subscribe(new Subscriber<ArrayList<Category>>() {
           @Override
           public void onCompleted() {
-
+            Log.v("heloo","get is successssssss@@@@@@@@@@@@2");
           }
 
           @Override
@@ -109,6 +107,8 @@ public class Competitions extends Fragment {
           @Override
           public void onNext(ArrayList<Category> list) {
             eventsList=list;
+            ImageAdapter recylclerAdapter=new ImageAdapter(null,eventsList,getActivity(),"competitions");
+            listview.setAdapter(recylclerAdapter);
           }
         }));
   }
