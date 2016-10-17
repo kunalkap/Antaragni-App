@@ -55,7 +55,7 @@ public class RetrofitAddOn {
     mRetrofit = new Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create(gson))
         .addCallAdapterFactory(RxJavaCallAdapterFactory.createWithScheduler(Schedulers.io()))
-        .baseUrl("http://www.antaragni.in/")
+        .baseUrl("https://www.antaragni.in/")
         .client(okHttpClient)
         .build();
   }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import antaragni.in.antaragni.DataModels.Category;
+import antaragni.in.antaragni.serverFields.ImageModel;
 import antaragni.in.antaragni.DataModels.subEvent;
 import rx.Observable;
 import rx.Scheduler;
@@ -18,6 +19,7 @@ public class DataManager {
   protected Scheduler mSubscribeScheduler;
   public DataService mService;
   public Context mContext;
+  public DataManager mDataManager;
   public DataManager(Context context){
     mContext=context;
   }
@@ -32,19 +34,19 @@ public class DataManager {
   public Observable<ArrayList<Category>> allEvents() {
     return mService.allEvents();
   }
-  public Observable<ArrayList> allSponsors(Map<String, String> options) {
-    return mService.allSponsors(options);
+  public Observable<ArrayList<ImageModel>> allSponsors() {
+    return mService.allSponsors();
   }
-  public Observable<ArrayList> allContacts(Map<String, String> options) {
-    return mService.allContacts(options);
-  }public Observable<ArrayList> getSchedule(Map<String, String> options) {
-    return mService.getSchedule( options);
+  public Observable<ArrayList> allContacts() {
+    return mService.allContacts();
+  }public Observable<ArrayList> getSchedule() {
+    return mService.getSchedule();
   }
-  public Observable<ArrayList> pastlineup() {
+  public Observable<ArrayList<ImageModel>> pastlineup() {
     return mService.pastLineup();
   }
-  public Observable<ArrayList> getHomePage(Map<String, String> options) {
-    return mService.getHomePage(options);
+  public Observable<ArrayList<ImageModel>> getHomePage() {
+    return mService.getHomePage();
   }
 
 

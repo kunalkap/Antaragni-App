@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity
           .addToBackStack(null).commit();
 
     } else if (id == R.id.nav_sponsors) {
-      Fragment f= new MainFragment();
+      Fragment f= GridFragment.newInstance("sponsors","sponsors");
       fragmentManager.beginTransaction()
           .replace(R.id.content_main,f)
           .addToBackStack(null).commit();

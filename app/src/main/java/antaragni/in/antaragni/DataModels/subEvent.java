@@ -10,14 +10,12 @@ import antaragni.in.antaragni.serialisation.ExcludeSerialization;
  */
 
 public class subEvent {
-  @ExcludeSerialization
   public Category category;               //category of the event
 
-  public Maintext mainText;             //description of the event, must be more than 50 works
+  public Maintext MainText;             //description of the event, must be more than 50 works
   public String linkToReg;
-  public String diplay_name;
+  public String display_name;
   public String name;
-  @ExcludeSerialization
   public ArrayList<EventStages> parts;
 
   public Category getCategory()
@@ -28,11 +26,11 @@ public class subEvent {
 
   //Getters and setters
   public Maintext getMainText() {
-    return mainText;
+    return MainText;
   }
 
   public void setMainText(Maintext maintext) {
-    this.mainText = maintext;
+    this.MainText = maintext;
   }
 
   public String getLink() {
@@ -44,11 +42,11 @@ public class subEvent {
   }
 
   public String getDisplayName() {
-    return diplay_name;
+    return display_name;
   }
 
   public void setDisplayName(String display) {
-    this.diplay_name = display;
+    this.display_name = display;
   }
 
   public String getname() {

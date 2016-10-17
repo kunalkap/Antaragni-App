@@ -2,18 +2,22 @@ package antaragni.in.antaragni.Adapters;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
+import antaragni.in.antaragni.DataHandler.ImageLoader;
 import antaragni.in.antaragni.DataModels.Category;
+import antaragni.in.antaragni.serverFields.ImageModel;
 import antaragni.in.antaragni.R;
 
 /**
@@ -25,9 +29,12 @@ public class ImageAdapter extends BaseAdapter {
   public String currentTab;
   public Drawable mDrawable;
   public ArrayList<Category> dataList;
+  public ArrayList<ImageModel> imageLinks;
+  public ImageLoader imageLoader;
   public Object getItem(int position) {
     return null;
   }
+  public String ENDPOINT="http://www.antaragni.in:7777/";
 
   public long getItemId(int position) {
     return 0;
@@ -61,7 +68,8 @@ public class ImageAdapter extends BaseAdapter {
           imageView = convertView;
         }
         ViewHolder vh=(ViewHolder)imageView.getTag();
-        ((ImageView)(vh.img)).setImageDrawable(mDrawable);
+        if (imageLinks!=null)
+        imageLoader.DisplayImage(ENDPOINT+imageLinks.get(position).url.get(0).image.filename, ((ImageView)vh.img));
       }
       else if (currentTab.equals("competitions")){
         if(convertView==null) {
@@ -76,7 +84,8 @@ public class ImageAdapter extends BaseAdapter {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.mContext,
             LinearLayoutManager.HORIZONTAL, false);
         vh.recycler.setLayoutManager(layoutManager);
-        vh.recycler.setAdapter(new CompAdapter(mContext,dataList.get(position).subevents));
+        if(dataList!=null)
+          vh.recycler.setAdapter(new CompAdapter(mContext,dataList.get(position).subevents));
         vh.img.setImageDrawable(mDrawable);
       }
       else{
@@ -87,22 +96,43 @@ public class ImageAdapter extends BaseAdapter {
         }else
           imageView=convertView;
         ViewHolder vh = (ViewHolder)(imageView.getTag());
-        ((ImageView)vh.img).setImageDrawable(mDrawable);
+        if(imageLinks!=null) {
+          try {
+            imageLoader.DisplayImage(ENDPOINT + URLEncoder.encode(imageLinks.get(position).images.filename, "%20"), ((ImageView) vh.img));
+          }//Log.v("image loader",""+imageLinks.get(position).url.get(0).image.filename+" loading images.............");
+          catch(UnsupportedEncodingException u){
+            
+          }
+        }
       }
     return imageView;
   }
 
 
-  public ImageAdapter(Drawable drawable,ArrayList<Category> list, Context c, String tab) {
+  public ImageAdapter(Drawable drawable, ArrayList<Category> list, Context c, String tab) {
     mDrawable=drawable;
     mContext = c;
     currentTab=tab;
     dataList=list;
+    imageLoader = new ImageLoader(c.getApplicationContext());
+  }
+
+  public ImageAdapter(ArrayList<ImageModel> list, Context c, String tab) {
+    mContext = c;
+    currentTab=tab;
+    dataList=null;
+    imageLinks=list;
+    imageLoader = new ImageLoader(c.getApplicationContext());
   }
 
   // Return the size of your dataset (invoked by the layout manager)
   @Override
   public int getCount() {
+    if(dataList==null && imageLinks==null)
     return 10;
+    else if (dataList!=null && imageLinks==null)
+      return dataList.size();
+    else
+      return imageLinks.size();
   }
 }

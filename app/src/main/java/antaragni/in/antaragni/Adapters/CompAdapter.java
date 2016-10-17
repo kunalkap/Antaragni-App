@@ -49,14 +49,28 @@ public class CompAdapter extends RecyclerView.Adapter<CompAdapter.ViewHolder>{
 
   @Override
   public void onBindViewHolder(ViewHolder holder, int position) {
-    holder.mTextView.setText(dataList.get(position).diplay_name);
+    if(dataList!=null)
+    {
+    holder.mTextView.setText(dataList.get(position).display_name);
+    holder.mTextView.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+
+      }
+    });
+    }
+    else
+      holder.mTextView.setText("yohooo");
     if(position%2==0)
       holder.mLinearLayout.setBackgroundColor(mContext.getResources().getColor(R.color.orange_light));
   }
 
   @Override
   public int getItemCount() {
-    return 10;
+    if(dataList!=null)
+      return dataList.size();
+    else
+      return 10;
   }
 }
 

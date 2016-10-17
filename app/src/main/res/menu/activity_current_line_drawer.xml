@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <group android:checkableBehavior="single">
+    <item
+      android:id="@+id/nav_classical"
+      android:icon="@drawable/ic_menu_camera"
+      android:title="Classical Night"/>
+    <item
+      android:id="@+id/nav_india_haat"
+      android:icon="@drawable/ic_menu_gallery"
+      android:title="India Haat"/>
+    <item
+      android:id="@+id/nav_india_inspired"
+      android:icon="@drawable/ic_menu_slideshow"
+      android:title="India Inspired"/>
+    <item
+      android:id="@+id/nav_international"
+      android:icon="@drawable/ic_menu_manage"
+      android:title="International Carnival"/>
+    <item
+      android:id="@+id/nav_kavi"
+      android:icon="@drawable/ic_menu_manage"
+      android:title="Kavi Sammelan"/>
+  </group>
+
+</menu>
