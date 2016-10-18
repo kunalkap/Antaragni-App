@@ -33,6 +33,7 @@ import org.json.JSONObject;
 import java.net.URL;
 
 import antaragni.in.antaragni.Fragments.Competitions;
+import antaragni.in.antaragni.Fragments.ContactFragment;
 import antaragni.in.antaragni.Fragments.GridFragment;
 import antaragni.in.antaragni.Fragments.MainFragment;
 import antaragni.in.antaragni.OnFragmentInteractionListener;
@@ -110,13 +111,7 @@ public class MainActivity extends AppCompatActivity
     return super.onOptionsItemSelected(item);
   }
 
-
-  @SuppressWarnings("StatementWithEmptyBody")
-  @Override
-  public boolean onNavigationItemSelected(MenuItem item) {
-    // Handle navigation view item clicks here.
-    int id = item.getItemId();
-    Drawable image;
+  public void openFragment(int id){
     if (id == R.id.nav_competitions) {
       Fragment f= Competitions.newInstance("comp","competitions");
       fragmentManager.beginTransaction()
@@ -124,7 +119,7 @@ public class MainActivity extends AppCompatActivity
           .addToBackStack(null).commit();
 
     } else if (id == R.id.nav_contact) {
-      Fragment f= new MainFragment();
+      Fragment f= new ContactFragment();
       fragmentManager.beginTransaction()
           .replace(R.id.content_main,f)
           .addToBackStack(null).commit();
@@ -142,22 +137,28 @@ public class MainActivity extends AppCompatActivity
           .addToBackStack(null).commit();
 
     } else if (id == R.id.nav_sponsors) {
-      Fragment f= GridFragment.newInstance("sponsors","sponsors");
+      Fragment f= MainFragment.newInstance("sponsors");
       fragmentManager.beginTransaction()
           .replace(R.id.content_main,f)
           .addToBackStack(null).commit();
 
-    }else if (id== R.id.nav_log)
+    }else if (id== R.id.nav_about)
     {
-      LoginManager.getInstance().logOut();
-      Intent t = new Intent(MainActivity.this, Login.class);
-      startActivity(t);
+
     }
     else if (id==R.id.nav_current_line){
       Intent t = new Intent(MainActivity.this, CurrentLine.class);
       startActivity(t);
     }
+  }
 
+  @SuppressWarnings("StatementWithEmptyBody")
+  @Override
+  public boolean onNavigationItemSelected(MenuItem item) {
+    // Handle navigation view item clicks here.
+    int id = item.getItemId();
+    Drawable image;
+    openFragment(id);
     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
     drawer.closeDrawer(GravityCompat.START);
     return true;

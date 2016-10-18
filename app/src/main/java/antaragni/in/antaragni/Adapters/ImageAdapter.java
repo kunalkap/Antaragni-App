@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +15,10 @@ import android.widget.ImageView;
 
 import java.util.ArrayList;
 
+import antaragni.in.antaragni.Activities.MainActivity;
 import antaragni.in.antaragni.DataHandler.ImageLoader;
 import antaragni.in.antaragni.DataModels.Category;
+import antaragni.in.antaragni.Utilities.EncodingUtil;
 import antaragni.in.antaragni.serverFields.CurrentLine;
 import antaragni.in.antaragni.serverFields.ImageModel;
 import antaragni.in.antaragni.R;
@@ -74,12 +77,46 @@ public class ImageAdapter extends BaseAdapter {
           vh.img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+              String type=imageLinks.get(position).text;
               if(imageLinks.get(position).text.equals("web")||imageLinks.get(position).text.equals("youtube")) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(imageLinks.get(position).link));
                 mContext.startActivity(intent);
               }
+              else if(imageLinks.get(position).text.equals("maps")){
+                // Create a Uri from an intent string. Use the result to create an Intent.
+                Uri gmmIntentUri = Uri.parse(imageLinks.get(position).link);
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                mContext.startActivity(mapIntent);
+              }
+              else if (type.equals("pronites"))
+                ((MainActivity)mContext).openFragment(R.id.nav_current_line);
+              else if (type.equals("schedule"))
+                ((MainActivity)mContext).openFragment(R.id.nav_schedule);
+              else if (type.equals("lineup"))
+                ((MainActivity)mContext).openFragment(R.id.nav_past_line);
+              else if (type.equals("sponsors"))
+                ((MainActivity)mContext).openFragment(R.id.nav_sponsors);
+              else if (type.equals("about"))
+                ((MainActivity)mContext).openFragment(R.id.nav_about);
+              else if (type.equals("contact"))
+                ((MainActivity)mContext).openFragment(R.id.nav_contact);
             }
           });
+        }
+      }else if(currentTab.equals("sponsors")){
+        if(convertView==null){
+          imageView=LayoutInflater.from(parent.getContext()).inflate(R.layout.linear_card,parent,false);
+          ImageAdapter.ViewHolder vh =new ImageAdapter.ViewHolder(imageView);
+          imageView.setTag(vh);
+        }else
+          imageView=convertView;
+        ViewHolder vh = (ViewHolder)(imageView.getTag());
+        if(imageLinks!=null) {
+          if(imageLinks.get(position).images!=null){
+            String s = EncodingUtil.encodeURIComponent(imageLinks.get(position).images.filename);
+            imageLoader.DisplayImage(ENDPOINT + s, ((ImageView) vh.img));
+          }
         }
       }
       else if (currentTab.equals("competitions")){
@@ -122,7 +159,10 @@ public class ImageAdapter extends BaseAdapter {
           imageView=convertView;
         ViewHolder vh = (ViewHolder)(imageView.getTag());
         if(imageLinks!=null) {
-            imageLoader.DisplayImage(ENDPOINT + imageLinks.get(position).images.filename, ((ImageView) vh.img));
+          if(imageLinks.get(position).images!=null){
+            String s = EncodingUtil.encodeURIComponent(imageLinks.get(position).images.filename);
+            imageLoader.DisplayImage(ENDPOINT + s, ((ImageView) vh.img));
+          }
         }
       }
     return imageView;

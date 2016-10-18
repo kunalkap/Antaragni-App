@@ -5,6 +5,7 @@ import android.icu.util.Currency;
 import java.util.ArrayList;
 
 import antaragni.in.antaragni.DataModels.Category;
+import antaragni.in.antaragni.serverFields.ContactSchema;
 import antaragni.in.antaragni.serverFields.CurrentLine;
 import antaragni.in.antaragni.serverFields.ImageModel;
 import antaragni.in.antaragni.DataModels.subEvent;
@@ -30,9 +31,6 @@ public interface DataService {
   @GET("database/sponsors")
   Observable<ArrayList<ImageModel>> allSponsors();
 
-  @GET("database/contacts")
-  Observable allContacts();
-
   @GET("database/schedule")
   Observable getSchedule();
 
@@ -45,6 +43,8 @@ public interface DataService {
   @POST("{usertoken}")
   Call<ResponseBody> postNewStream(@Path("usertoken") String usertoken, @Body String body);
 
+  @GET("database/contacts")
+  Observable<ArrayList<ContactSchema>> getContacts();
 
   @GET("database/{type}")
   Observable<ArrayList<CurrentLine>> getData(@Path("type") String type );

@@ -88,34 +88,7 @@ public class GridFragment extends Fragment {
   }
 
   public void loadData(String type) {
-    if(type.equals("sponsors"))
-    mSubscriptions.add(mDataManager.allSponsors()
-        .subscribeOn(Schedulers.io()) // optional if you do not wish to override the default behavior
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new Subscriber<ArrayList<ImageModel>>() {
-          @Override
-          public void onCompleted() {
-            Log.v("heloo","get is successssssss@@@@@@@@@@@@2");
-          }
-
-          @Override
-          public void onError(Throwable e) {
-            // cast to retrofit.HttpException to get the response code
-            if (e instanceof HttpException) {
-              HttpException response = (HttpException) e;
-              int code = response.code();
-            }
-          }
-
-          @Override
-          public void onNext(ArrayList<ImageModel> list) {
-            eventlist=list;
-            recylclerAdapter.imageLinks=list;
-            recylclerAdapter.notifyDataSetChanged();
-          }
-        }));
-
-    else if (type.equals("past"))
+   if (type.equals("past"))
       mSubscriptions.add(mDataManager.pastlineup()
           .subscribeOn(Schedulers.io()) // optional if you do not wish to override the default behavior
           .observeOn(AndroidSchedulers.mainThread())
