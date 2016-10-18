@@ -31,18 +31,33 @@ public class MainFragment extends Fragment {
   private OnFragmentInteractionListener mListener;
   private CompositeSubscription mSubscriptions;
   private DataManager mDataManager;
+  private final static String ARG_PARAM1="sponsor";
+  private String tab="home";
+  private String mParam;
   public MainFragment() {
 
   }
 
+  public static MainFragment newInstance(String param1) {
+    MainFragment fragment = new MainFragment();
+    Bundle args = new Bundle();
+    args.putString(ARG_PARAM1, param1);
+    fragment.setArguments(args);
+    return fragment;
+  }
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    if (getArguments() != null) {
+      mParam = getArguments().getString(ARG_PARAM1);
+      tab="sponsors";
+    }
     mSubscriptions=new CompositeSubscription();
     RetrofitAddOn retrofitAddOn= RetrofitAddOn.getInstance(getActivity().getApplicationContext());
     mDataManager=new DataManager(getActivity().getApplicationContext());
     mDataManager.mService=retrofitAddOn.newUserService();
-    loadData();
+
+    loadData(mParam);
   }
 
   @Override
@@ -51,13 +66,40 @@ public class MainFragment extends Fragment {
     // Inflate the layout for this fragment
     View v= inflater.inflate(R.layout.fragment_main, container, false);
     mImageRecycler = (ListView) v.findViewById(R.id.imageView);
-    mRecyclerAdapter = new ImageAdapter(null,getActivity(),"home");
+    mRecyclerAdapter = new ImageAdapter(null,getActivity(),tab);
     mImageRecycler.setAdapter(mRecyclerAdapter);
     return v;
   }
 
-  public void loadData() {
-      mSubscriptions.add(mDataManager.getHomePage()
+  public void loadData(String type) {
+      if(type!=null)
+        mSubscriptions.add(mDataManager.allSponsors()
+            .subscribeOn(Schedulers.io()) // optional if you do not wish to override the default behavior
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Subscriber<ArrayList<ImageModel>>() {
+              @Override
+              public void onCompleted() {
+                Log.v("heloo","get is successssssss@@@@@@@@@@@@2");
+              }
+
+              @Override
+              public void onError(Throwable e) {
+                // cast to retrofit.HttpException to get the response code
+                if (e instanceof HttpException) {
+                  HttpException response = (HttpException) e;
+                  int code = response.code();
+                }
+              }
+
+              @Override
+              public void onNext(ArrayList<ImageModel> list) {
+                mRecyclerAdapter.imageLinks=list;
+                mRecyclerAdapter.notifyDataSetChanged();
+              }
+            }));
+
+      else
+        mSubscriptions.add(mDataManager.getHomePage()
           .subscribeOn(Schedulers.io()) // optional if you do not wish to override the default behavior
           .observeOn(AndroidSchedulers.mainThread())
           .subscribe(new Subscriber<ArrayList<ImageModel>>() {
