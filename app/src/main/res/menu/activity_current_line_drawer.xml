@@ -4,7 +4,7 @@
   <group android:checkableBehavior="single">
     <item
       android:id="@+id/nav_classical"
-      android:icon="@drawable/ic_menu_camera"
+      android:icon="@drawable/music"
       android:title="Classical Night"/>
     <item
       android:id="@+id/nav_india_haat"
@@ -12,15 +12,15 @@
       android:title="India Haat"/>
     <item
       android:id="@+id/nav_india_inspired"
-      android:icon="@drawable/ic_menu_slideshow"
+      android:icon="@drawable/flag_o"
       android:title="India Inspired"/>
     <item
       android:id="@+id/nav_international"
-      android:icon="@drawable/ic_menu_manage"
+      android:icon="@drawable/heartbeat"
       android:title="International Carnival"/>
     <item
       android:id="@+id/nav_kavi"
-      android:icon="@drawable/ic_menu_manage"
+      android:icon="@drawable/check_square_o"
       android:title="Kavi Sammelan"/>
   </group>
 

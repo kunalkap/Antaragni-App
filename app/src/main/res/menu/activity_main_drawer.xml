@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:droid="http://schemas.android.com/apk/res-auto">
 
   <group
     android:id="@+id/grp1"
@@ -7,36 +8,38 @@
     >
     <item
       android:id="@+id/nav_Home"
-      android:icon="@drawable/ic_menu_camera"
+      android:icon="@drawable/ic_home_black_24dp"
       android:title="Home"></item>
+
     <item
       android:id="@+id/nav_schedule"
       android:icon="@drawable/ic_menu_camera"
       android:title="Schedule"></item>
     <item
       android:id="@+id/nav_competitions"
-      android:icon="@drawable/ic_menu_gallery"
-      android:title="Competitions"/>
+      android:icon="@drawable/ic_people_black_24dp"
+      android:title="Competitions" />
     <item
       android:id="@+id/nav_past_line"
-      android:icon="@drawable/ic_menu_manage"
+      android:icon="@drawable/ic_grade_black_24dp"
       android:title="Past Line Up"/>
     <item
       android:id="@+id/nav_current_line"
-      android:icon="@drawable/ic_menu_manage"
+      android:icon="@drawable/ic_star_half_black_24dp"
       android:title="Current Line Up"/>
     </group>
   <group android:id="@+id/grp2"
     android:checkableBehavior="single">
       <item
         android:id="@+id/nav_sponsors"
-        android:icon="@drawable/ic_menu_share"
+        android:icon="@drawable/ic_vpn_lock_black_24dp"
         android:title="Sponsors"/>
       <item
         android:id="@+id/nav_contact"
-        android:icon="@drawable/ic_menu_send"
+        android:icon="@drawable/ic_call_black_24dp"
         android:title="Contact Us"/>
     </group>
+<<<<<<< 50892f1a1c1e44308e23fb9a0eab433ac2bed3d5
   <group
     android:id="@+id/grp3"
     android:checkableBehavior="single">
@@ -45,4 +48,7 @@
       android:icon="@drawable/ic_menu_send"
       android:title="About"/>
 </group>
+=======
+
+>>>>>>> icons changed
 </menu>
