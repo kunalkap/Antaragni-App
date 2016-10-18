@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-  <group android:checkableBehavior="single">
+  <group
+    android:id="@+id/grp1"
+    android:checkableBehavior="single"
+    >
     <item
       android:id="@+id/nav_Home"
       android:icon="@drawable/ic_menu_camera"
@@ -11,13 +14,16 @@
       android:icon="@drawable/ic_menu_gallery"
       android:title="Competitions"/>
     <item
-      android:id="@+id/nav_register"
-      android:icon="@drawable/ic_menu_slideshow"
-      android:title="Register"/>
-    <item
       android:id="@+id/nav_past_line"
       android:icon="@drawable/ic_menu_manage"
       android:title="Past Line Up"/>
+    <item
+      android:id="@+id/nav_current_line"
+      android:icon="@drawable/ic_menu_manage"
+      android:title="Current Line Up"/>
+    </group>
+  <group android:id="@+id/grp2"
+    android:checkableBehavior="single">
       <item
         android:id="@+id/nav_sponsors"
         android:icon="@drawable/ic_menu_share"
@@ -26,6 +32,10 @@
         android:id="@+id/nav_contact"
         android:icon="@drawable/ic_menu_send"
         android:title="Contact Us"/>
+    </group>
+  <group
+    android:id="@+id/grp3"
+    android:checkableBehavior="single">
     <item
       android:id="@+id/nav_log"
       android:icon="@drawable/ic_menu_send"

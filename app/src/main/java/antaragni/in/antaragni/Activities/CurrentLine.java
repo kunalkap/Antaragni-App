@@ -1,11 +1,6 @@
 package antaragni.in.antaragni.Activities;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -21,40 +16,23 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.facebook.AccessToken;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
-import com.facebook.HttpMethod;
-import com.facebook.login.LoginManager;
-import com.github.siyamed.shapeimageview.CircularImageView;
-
-import org.json.JSONObject;
-
-import java.net.URL;
-
-import antaragni.in.antaragni.Fragments.Competitions;
+import antaragni.in.antaragni.Fragments.CurrentLineFragment;
 import antaragni.in.antaragni.Fragments.GridFragment;
-import antaragni.in.antaragni.Fragments.MainFragment;
 import antaragni.in.antaragni.OnFragmentInteractionListener;
 import antaragni.in.antaragni.R;
 
-public class MainActivity extends AppCompatActivity
+public class CurrentLine extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener, OnFragmentInteractionListener {
+
   FragmentManager fragmentManager;
-  CircularImageView headerImage;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-
-    setContentView(R.layout.activity_main);
+    setContentView(R.layout.activity_current_line);
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
-    Fragment fragment= new MainFragment();
     fragmentManager=getSupportFragmentManager();
-    fragmentManager.beginTransaction()
-        .add(R.id.content_main,fragment)
-        .addToBackStack(null)
-        .commit();
     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -70,7 +48,7 @@ public class MainActivity extends AppCompatActivity
     drawer.setDrawerListener(toggle);
     toggle.syncState();
 
-    final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+    NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
     navigationView.setNavigationItemSelectedListener(this);
   }
 
@@ -87,19 +65,13 @@ public class MainActivity extends AppCompatActivity
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     // Inflate the menu; this adds items to the action bar if it is present.
-    getMenuInflater().inflate(R.menu.main, menu);
+    getMenuInflater().inflate(R.menu.current_line, menu);
     return true;
-  }
-  @Override
-  public void onFragmentInteraction(Uri uri){
-
   }
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-    // Handle action bar item clicks here. The action bar will
-    // automatically handle clicks on the Home/Up button, so long
-    // as you specify a parent activity in AndroidManifest.xml.
+
     int id = item.getItemId();
 
     //noinspection SimplifiableIfStatement
@@ -110,57 +82,46 @@ public class MainActivity extends AppCompatActivity
     return super.onOptionsItemSelected(item);
   }
 
-
   @SuppressWarnings("StatementWithEmptyBody")
   @Override
   public boolean onNavigationItemSelected(MenuItem item) {
     // Handle navigation view item clicks here.
     int id = item.getItemId();
-    Drawable image;
-    if (id == R.id.nav_competitions) {
-      Fragment f= Competitions.newInstance("comp","competitions");
-      fragmentManager.beginTransaction()
-          .replace(R.id.content_main,f)
-          .addToBackStack(null).commit();
 
-    } else if (id == R.id.nav_contact) {
-      Fragment f= new MainFragment();
+    if (id == R.id.nav_india_haat) {
+      Fragment f= CurrentLineFragment.newInstance("indiaHaat","haat");
       fragmentManager.beginTransaction()
-          .replace(R.id.content_main,f)
-          .addToBackStack(null).commit();
-
-    } else if (id == R.id.nav_Home) {
-      Fragment f= new MainFragment();
+          .replace(R.id.content_current_line,f)
+          .commit();
+    } else if (id == R.id.nav_india_inspired) {
+      Fragment f= CurrentLineFragment.newInstance("indiaInspired","out");
       fragmentManager.beginTransaction()
-          .replace(R.id.content_main,f)
-          .addToBackStack(null).commit();
+          .replace(R.id.content_current_line,f)
+          .commit();
 
-    } else if (id == R.id.nav_past_line) {
-      Fragment f= GridFragment.newInstance("past","pastline");
+    } else if (id == R.id.nav_classical) {
+      Fragment f= CurrentLineFragment.newInstance("classical","classical");
       fragmentManager.beginTransaction()
-          .replace(R.id.content_main,f)
-          .addToBackStack(null).commit();
-
-    } else if (id == R.id.nav_sponsors) {
-      Fragment f= GridFragment.newInstance("sponsors","sponsors");
+          .replace(R.id.content_current_line,f)
+          .commit();
+    } else if (id == R.id.nav_international) {
+      Fragment f= CurrentLineFragment.newInstance("carnival","inter");
       fragmentManager.beginTransaction()
-          .replace(R.id.content_main,f)
-          .addToBackStack(null).commit();
-
-    }else if (id== R.id.nav_log)
-    {
-      LoginManager.getInstance().logOut();
-      Intent t = new Intent(MainActivity.this, Login.class);
-      startActivity(t);
-    }
-    else if (id==R.id.nav_current_line){
-      Intent t = new Intent(MainActivity.this, CurrentLine.class);
-      startActivity(t);
+          .replace(R.id.content_current_line,f)
+          .commit();
+    } else if (id == R.id.nav_kavi) {
+      Fragment f= CurrentLineFragment.newInstance("kavi","kavi");
+      fragmentManager.beginTransaction()
+          .replace(R.id.content_current_line,f)
+          .commit();
     }
 
     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
     drawer.closeDrawer(GravityCompat.START);
     return true;
   }
+  @Override
+  public void onFragmentInteraction(Uri uri){
 
+  }
 }

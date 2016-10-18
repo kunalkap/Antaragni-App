@@ -17,6 +17,13 @@ public class Contact {
     this.number = number;
   }
 
+  public Contact(String number, String name){
+    this.name=name;
+    this.number=number;
+    this.category=null;
+    this.post=null;
+  }
+
   public String getName()
   {
     return name;

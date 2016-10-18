@@ -87,8 +87,6 @@ public class register extends AppCompatActivity
 
         if (id == R.id.antaragni_register) {
             // Handle the camera action
-        } else if (id == R.id.home_register) {
-
         } else if (id == R.id.guidelines_register) {
 
         } else if (id == R.id.profile_register) {
