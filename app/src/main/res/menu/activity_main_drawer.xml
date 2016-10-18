@@ -17,6 +17,10 @@
       android:id="@+id/nav_past_line"
       android:icon="@drawable/ic_menu_manage"
       android:title="Past Line Up"/>
+    <item
+      android:id="@+id/nav_current_line"
+      android:icon="@drawable/ic_menu_manage"
+      android:title="Current Line Up"/>
     </group>
   <group android:id="@+id/grp2"
     android:checkableBehavior="single">

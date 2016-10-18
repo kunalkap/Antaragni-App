@@ -2,12 +2,15 @@ package antaragni.in.antaragni.DataModels;
 
 import java.util.ArrayList;
 
+import antaragni.in.antaragni.serverFields.ImagE;
+
 /**
  * Created by varun on 15/10/16.
  */
 
 public class Category {
   public String Event;
+  public ImagE image;
   public ArrayList<subEvent> subevents;
   public ArrayList<Contact> contacts;
 
@@ -19,6 +22,15 @@ public class Category {
   public void setEvent(String event) {
     this.Event = event;
   }
+
+  public ImagE getImage() {
+    return image;
+  }
+
+  public void setImage(ImagE img) {
+    this.image = img;
+  }
+
 
   public ArrayList<subEvent> getSubevents() {
     return subevents;

@@ -45,11 +45,6 @@
       </intent-filter>
     </activity>
     <activity
-      android:name=".Activities.EventScheduler"
-      android:label="@string/title_activity_event_scheduler"
-      android:theme="@style/AppTheme.NoActionBar">
-    </activity>
-    <activity
       android:name=".Activities.CurrentLine"
       android:label="@string/title_activity_current_line"
       android:theme="@style/AppTheme">

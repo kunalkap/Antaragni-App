@@ -1,8 +1,11 @@
 package antaragni.in.antaragni.DataHandler;
 
+import android.icu.util.Currency;
+
 import java.util.ArrayList;
 
 import antaragni.in.antaragni.DataModels.Category;
+import antaragni.in.antaragni.serverFields.CurrentLine;
 import antaragni.in.antaragni.serverFields.ImageModel;
 import antaragni.in.antaragni.DataModels.subEvent;
 import okhttp3.ResponseBody;
@@ -41,5 +44,9 @@ public interface DataService {
 
   @POST("{usertoken}")
   Call<ResponseBody> postNewStream(@Path("usertoken") String usertoken, @Body String body);
+
+
+  @GET("database/indiaInspired")
+  Observable<ArrayList<CurrentLine>> inspired();
 
 }

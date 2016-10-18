@@ -1,8 +1,11 @@
 package antaragni.in.antaragni.Activities;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,10 +16,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import antaragni.in.antaragni.Fragments.CurrentLineFragment;
+import antaragni.in.antaragni.Fragments.GridFragment;
+import antaragni.in.antaragni.OnFragmentInteractionListener;
 import antaragni.in.antaragni.R;
 
 public class CurrentLine extends AppCompatActivity
-    implements NavigationView.OnNavigationItemSelectedListener {
+    implements NavigationView.OnNavigationItemSelectedListener, OnFragmentInteractionListener {
+
+  FragmentManager fragmentManager;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +32,7 @@ public class CurrentLine extends AppCompatActivity
     setContentView(R.layout.activity_current_line);
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
-
+    fragmentManager=getSupportFragmentManager();
     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -63,9 +71,7 @@ public class CurrentLine extends AppCompatActivity
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-    // Handle action bar item clicks here. The action bar will
-    // automatically handle clicks on the Home/Up button, so long
-    // as you specify a parent activity in AndroidManifest.xml.
+
     int id = item.getItemId();
 
     //noinspection SimplifiableIfStatement
@@ -82,22 +88,28 @@ public class CurrentLine extends AppCompatActivity
     // Handle navigation view item clicks here.
     int id = item.getItemId();
 
-    if (id == R.id.nav_camera) {
+    if (id == R.id.nav_india_haat) {
       // Handle the camera action
-    } else if (id == R.id.nav_gallery) {
+    } else if (id == R.id.nav_india_inspired) {
+      Fragment f= CurrentLineFragment.newInstance("out","out");
+      fragmentManager.beginTransaction()
+          .replace(R.id.content_current_line,f)
+          .addToBackStack(null).commit();
 
-    } else if (id == R.id.nav_slideshow) {
+    } else if (id == R.id.nav_classical) {
 
-    } else if (id == R.id.nav_manage) {
+    } else if (id == R.id.nav_international) {
 
-    } else if (id == R.id.nav_share) {
-
-    } else if (id == R.id.nav_send) {
+    } else if (id == R.id.nav_kavi) {
 
     }
 
     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
     drawer.closeDrawer(GravityCompat.START);
     return true;
+  }
+  @Override
+  public void onFragmentInteraction(Uri uri){
+
   }
 }

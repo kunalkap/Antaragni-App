@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import antaragni.in.antaragni.DataModels.Category;
+import antaragni.in.antaragni.serverFields.CurrentLine;
 import antaragni.in.antaragni.serverFields.ImageModel;
 import antaragni.in.antaragni.DataModels.subEvent;
 import rx.Observable;
@@ -47,6 +48,9 @@ public class DataManager {
   }
   public Observable<ArrayList<ImageModel>> getHomePage() {
     return mService.getHomePage();
+  }
+  public Observable<ArrayList<CurrentLine>> inspired() {
+    return mService.inspired();
   }
 
 

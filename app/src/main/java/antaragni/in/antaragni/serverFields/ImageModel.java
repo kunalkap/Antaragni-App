@@ -13,6 +13,8 @@ import antaragni.in.antaragni.serverFields.ImageURL;
 public class ImageModel {
   public ArrayList<ImageURL> url;
   public ImagE images;
+  public String text;
+  public String link;
 
   public ArrayList<ImageURL> getUrl(){
     return url;
