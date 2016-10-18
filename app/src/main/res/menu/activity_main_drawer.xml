@@ -13,7 +13,7 @@
 
     <item
       android:id="@+id/nav_schedule"
-      android:icon="@drawable/ic_menu_camera"
+      android:icon="@drawable/ic_assignment_black_24dp"
       android:title="Schedule"></item>
     <item
       android:id="@+id/nav_competitions"
@@ -39,16 +39,13 @@
         android:icon="@drawable/ic_call_black_24dp"
         android:title="Contact Us"/>
     </group>
-<<<<<<< 50892f1a1c1e44308e23fb9a0eab433ac2bed3d5
+
   <group
     android:id="@+id/grp3"
     android:checkableBehavior="single">
-    <item
+  <item
       android:id="@+id/nav_about"
       android:icon="@drawable/ic_menu_send"
       android:title="About"/>
 </group>
-=======
-
->>>>>>> icons changed
 </menu>
