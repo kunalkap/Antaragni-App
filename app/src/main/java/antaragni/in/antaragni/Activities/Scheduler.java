@@ -55,7 +55,7 @@ public class Scheduler extends AppCompatActivity {
      */
     private ViewPager mViewPager;
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private MyAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private DataManager mDataManager;
 
@@ -89,7 +89,7 @@ public class Scheduler extends AppCompatActivity {
             }
         });
 
-        mAdapter = new MyAdapter();
+        mAdapter = new MyAdapter(null);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.current_line_recycler);
 
@@ -131,31 +131,30 @@ public class Scheduler extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     public void loadData() {
-            mSubscriptions.add(mDataManager.getSchedule()
-                    .subscribeOn(Schedulers.io()) // optional if you do not wish to override the default behavior
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Subscriber<ArrayList<scheduleparser>>() {
-                        @Override
-                        public void onCompleted() {
-                            Log.v("heloo","get is successssssss@@@@@@@@@@@@2");
-                        }
+        mSubscriptions.add(mDataManager.getSchedule()
+            .subscribeOn(Schedulers.io()) // optional if you do not wish to override the default behavior
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Subscriber<ArrayList<scheduleparser>>() {
+                @Override
+                public void onCompleted() {
+                    Log.v("heloo", "get is successssssss@@@@@@@@@@@@2");
+                }
 
-                        @Override
-                        public void onError(Throwable e) {
-                            // cast to retrofit.HttpException to get the response code
-                            if (e instanceof HttpException) {
-                                HttpException response = (HttpException) e;
-                                int code = response.code();
-                            }
-                        }
+                @Override
+                public void onError(Throwable e) {
+                    // cast to retrofit.HttpException to get the response code
+                    if (e instanceof HttpException) {
+                        HttpException response = (HttpException) e;
+                        int code = response.code();
+                    }
+                }
 
-                        @Override
-                        public void onNext(ArrayList<scheduleparser> list) {
-
-
-                        }
-                    }));
-
+                @Override
+                public void onNext(ArrayList<scheduleparser> list) {
+                    mAdapter.mDataset=list;
+                }
+            }));
+    }
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -193,6 +192,8 @@ public class Scheduler extends AppCompatActivity {
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
+
+
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
@@ -227,5 +228,4 @@ public class Scheduler extends AppCompatActivity {
             return null;
         }
     }
-}
 }

@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 import antaragni.in.antaragni.R;
@@ -28,6 +29,8 @@ public class Sponsors extends Fragment {
     View v=inflater.inflate(R.layout.fragment_sponsors, container, false);
     WebView myWebView = (WebView) v.findViewById(R.id.webview);
     myWebView.loadUrl("https://www.antaragni.in/sponsors");
+    myWebView.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+    myWebView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
     return v;
   }
 
