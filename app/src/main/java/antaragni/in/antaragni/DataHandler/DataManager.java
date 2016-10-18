@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import antaragni.in.antaragni.DataModels.Category;
+import antaragni.in.antaragni.serverFields.ContactSchema;
 import antaragni.in.antaragni.serverFields.CurrentLine;
 import antaragni.in.antaragni.serverFields.ImageModel;
 import antaragni.in.antaragni.DataModels.subEvent;
@@ -38,9 +39,7 @@ public class DataManager {
   public Observable<ArrayList<ImageModel>> allSponsors() {
     return mService.allSponsors();
   }
-  public Observable<ArrayList> allContacts() {
-    return mService.allContacts();
-  }public Observable<ArrayList> getSchedule() {
+  public Observable<ArrayList> getSchedule() {
     return mService.getSchedule();
   }
   public Observable<ArrayList<ImageModel>> pastlineup() {
@@ -51,5 +50,8 @@ public class DataManager {
   }
   public Observable<ArrayList<CurrentLine>> getData(String type) {
     return mService.getData(type);
+  }
+  public Observable<ArrayList<ContactSchema>> getContacts() {
+    return mService.getContacts();
   }
 }

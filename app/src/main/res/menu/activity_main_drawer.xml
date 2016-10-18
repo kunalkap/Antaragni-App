@@ -10,6 +10,10 @@
       android:icon="@drawable/ic_menu_camera"
       android:title="Home"></item>
     <item
+      android:id="@+id/nav_schedule"
+      android:icon="@drawable/ic_menu_camera"
+      android:title="Schedule"></item>
+    <item
       android:id="@+id/nav_competitions"
       android:icon="@drawable/ic_menu_gallery"
       android:title="Competitions"/>
@@ -37,8 +41,8 @@
     android:id="@+id/grp3"
     android:checkableBehavior="single">
     <item
-      android:id="@+id/nav_log"
+      android:id="@+id/nav_about"
       android:icon="@drawable/ic_menu_send"
-      android:title="Log Out"/>
+      android:title="About"/>
 </group>
 </menu>
