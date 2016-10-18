@@ -18,7 +18,7 @@ import antaragni.in.antaragni.serverFields.scheduleparser;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public ArrayList<scheduleparser> mDataset;
-
+    public int day;
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
@@ -37,8 +37,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(ArrayList<scheduleparser> myDataset) {
+    public MyAdapter(ArrayList<scheduleparser> myDataset, int date) {
         mDataset = myDataset;
+        day= date;
     }
 
     // Create new views (invoked by the layout manager)

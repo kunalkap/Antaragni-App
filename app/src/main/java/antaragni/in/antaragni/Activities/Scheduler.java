@@ -47,10 +47,7 @@ public class Scheduler extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
-    private CompositeSubscription mSubscriptions;
-    public ArrayList<scheduleparser> mDataset;
-    public ArrayList<ArrayList<scheduleparser>> daywiselist;
-    private DataManager mDataManager;
+
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -69,7 +66,6 @@ public class Scheduler extends AppCompatActivity {
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
-        mSubscriptions=new CompositeSubscription();
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -83,12 +79,6 @@ public class Scheduler extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
-        mSubscriptions=new CompositeSubscription();
-        RetrofitAddOn retrofitAddOn= RetrofitAddOn.getInstance(this.getApplicationContext());
-        mDataManager=new DataManager(this.getApplicationContext());
-        mDataManager.mService=retrofitAddOn.newUserService();
-        loadData();
     }
 
 
@@ -113,31 +103,8 @@ public class Scheduler extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    public void loadData() {
-        mSubscriptions.add(mDataManager.getSchedule()
-            .subscribeOn(Schedulers.io()) // optional if you do not wish to override the default behavior
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(new Subscriber<ArrayList<scheduleparser>>() {
-                @Override
-                public void onCompleted() {
-                    Log.v("heloo", "get is successssssss@@@@@@@@@@@@2");
-                }
 
-                @Override
-                public void onError(Throwable e) {
-                    // cast to retrofit.HttpException to get the response code
-                    if (e instanceof HttpException) {
-                        HttpException response = (HttpException) e;
-                        int code = response.code();
-                    }
-                }
 
-                @Override
-                public void onNext(ArrayList<scheduleparser> list) {
-                    mDataset=list;
-                }
-            }));
-    }
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -147,7 +114,10 @@ public class Scheduler extends AppCompatActivity {
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
-
+        private CompositeSubscription mSubscriptions;
+        public ArrayList<scheduleparser> mDataset;
+        public ArrayList<ArrayList<scheduleparser>> daywiselist;
+        private DataManager mDataManager;
         public PlaceholderFragment() {
         }
         private RecyclerView mRecyclerView;
@@ -164,6 +134,42 @@ public class Scheduler extends AppCompatActivity {
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
             return fragment;
+        }
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            mSubscriptions=new CompositeSubscription();
+            RetrofitAddOn retrofitAddOn= RetrofitAddOn.getInstance(getActivity().getApplicationContext());
+            mDataManager=new DataManager(getActivity().getApplicationContext());
+            mDataManager.mService=retrofitAddOn.newUserService();
+            loadData();
+        }
+        public void loadData() {
+            mSubscriptions.add(mDataManager.getSchedule()
+                .subscribeOn(Schedulers.io()) // optional if you do not wish to override the default behavior
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<ArrayList<scheduleparser>>() {
+                    @Override
+                    public void onCompleted() {
+                        Log.v("heloo", "get is successssssss@@@@@@@@@@@@2");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        // cast to retrofit.HttpException to get the response code
+                        if (e instanceof HttpException) {
+                            HttpException response = (HttpException) e;
+                            int code = response.code();
+                        }
+                    }
+
+                    @Override
+                    public void onNext(ArrayList<scheduleparser> list) {
+                        mDataset = list;
+                        mAdapter.mDataset=mDataset;
+                        mAdapter.notifyDataSetChanged();
+                    }
+                }));
         }
 
         @Override
