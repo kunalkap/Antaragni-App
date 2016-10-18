@@ -130,7 +130,11 @@ public class MainActivity extends AppCompatActivity
           .replace(R.id.content_main,f)
           .addToBackStack(null).commit();
 
-    } else if (id == R.id.nav_past_line) {
+    } else if (id == R.id.nav_schedule){
+      Intent t = new Intent(MainActivity.this,Scheduler.class);
+      startActivity(t);
+    }
+    else if (id == R.id.nav_past_line) {
       Fragment f= GridFragment.newInstance("past","pastline");
       fragmentManager.beginTransaction()
           .replace(R.id.content_main,f)

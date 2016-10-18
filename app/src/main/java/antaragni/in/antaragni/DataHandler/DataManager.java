@@ -10,6 +10,7 @@ import antaragni.in.antaragni.serverFields.ContactSchema;
 import antaragni.in.antaragni.serverFields.CurrentLine;
 import antaragni.in.antaragni.serverFields.ImageModel;
 import antaragni.in.antaragni.DataModels.subEvent;
+import antaragni.in.antaragni.serverFields.scheduleparser;
 import rx.Observable;
 import rx.Scheduler;
 
@@ -39,7 +40,11 @@ public class DataManager {
   public Observable<ArrayList<ImageModel>> allSponsors() {
     return mService.allSponsors();
   }
-  public Observable<ArrayList> getSchedule() {
+
+  public Observable<ArrayList> allContacts() {
+    return mService.allContacts();
+  }
+  public Observable<ArrayList<scheduleparser>> getSchedule() {
     return mService.getSchedule();
   }
   public Observable<ArrayList<ImageModel>> pastlineup() {
