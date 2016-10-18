@@ -15,6 +15,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 
 import antaragni.in.antaragni.Fragments.CurrentLineFragment;
 import antaragni.in.antaragni.Fragments.GridFragment;
@@ -32,6 +34,10 @@ public class CurrentLine extends AppCompatActivity
     setContentView(R.layout.activity_current_line);
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
+    WebView myWebView = (WebView) findViewById(R.id.webview);
+    WebSettings webSettings = myWebView.getSettings();
+    webSettings.setJavaScriptEnabled(true);
+    myWebView.loadUrl("https://www.antaragni.in/currentLineUp");
     fragmentManager=getSupportFragmentManager();
     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
     fab.setOnClickListener(new View.OnClickListener() {
