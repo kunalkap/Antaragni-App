@@ -176,7 +176,7 @@ public class ContactFragment extends Fragment {
         holder.mBoundString = mValues.get(position).text;
         String text = mValues.get(position).text;
         holder.mName.setText(text);
-        holder.mNumber.setText(mValues.get(position).getNumber());
+        holder.mNumber.setText(mValues.get(position).getnumber());
         holder.mEmail.setText(mValues.get(position).getEmail());
         holder.mView.setOnClickListener(new View.OnClickListener() {
           @Override
@@ -192,14 +192,14 @@ public class ContactFragment extends Fragment {
                     } else {
                       intent.setPackage("com.android.phone");
                     }
-                    intent.setData(Uri.parse("tel:" + mValues.get(position).getNumber()));
+                    intent.setData(Uri.parse("tel:" + mValues.get(position).getnumber()));
                     getActivity().startActivity(intent);
                     break;
                   case R.id.save:
                     Intent intent1 = new Intent(Intent.ACTION_INSERT);
                     intent1.setType(ContactsContract.Contacts.CONTENT_TYPE);
                     intent1.putExtra(ContactsContract.Intents.Insert.NAME, mValues.get(position).text);
-                    intent1.putExtra(ContactsContract.Intents.Insert.PHONE, mValues.get(position).getNumber());
+                    intent1.putExtra(ContactsContract.Intents.Insert.PHONE, mValues.get(position).getnumber());
                     if (intent1.resolveActivity(getActivity().getPackageManager()) != null) {
                       startActivity(intent1);
                     }
