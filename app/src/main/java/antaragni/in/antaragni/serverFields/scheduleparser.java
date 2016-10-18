@@ -9,13 +9,13 @@ public class scheduleparser {
     public String starttime;
     public String endtime;
     public String venue;
-    public String day;
+    public int day;
 
-    public String getDay() {
+    public int getDay() {
         return day;
     }
 
-    public void setDay(String day) {
+    public void setDay(int day) {
         this.day = day;
     }
 

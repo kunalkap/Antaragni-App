@@ -48,16 +48,14 @@ public class Scheduler extends AppCompatActivity {
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private CompositeSubscription mSubscriptions;
-
-
+    public ArrayList<scheduleparser> mDataset;
+    public ArrayList<ArrayList<scheduleparser>> daywiselist;
+    private DataManager mDataManager;
     /**
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
-    private RecyclerView mRecyclerView;
-    private MyAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-    private DataManager mDataManager;
+
 
 
 
@@ -68,15 +66,12 @@ public class Scheduler extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        mSubscriptions=new CompositeSubscription();
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
-
+        mSubscriptions=new CompositeSubscription();
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
@@ -89,18 +84,6 @@ public class Scheduler extends AppCompatActivity {
             }
         });
 
-        mAdapter = new MyAdapter(null);
-
-        mRecyclerView = (RecyclerView) findViewById(R.id.current_line_recycler);
-
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        mRecyclerView.setHasFixedSize(true);
-
-        // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(mAdapter);
         mSubscriptions=new CompositeSubscription();
         RetrofitAddOn retrofitAddOn= RetrofitAddOn.getInstance(this.getApplicationContext());
         mDataManager=new DataManager(this.getApplicationContext());
@@ -151,7 +134,7 @@ public class Scheduler extends AppCompatActivity {
 
                 @Override
                 public void onNext(ArrayList<scheduleparser> list) {
-                    mAdapter.mDataset=list;
+                    mDataset=list;
                 }
             }));
     }
@@ -167,6 +150,9 @@ public class Scheduler extends AppCompatActivity {
 
         public PlaceholderFragment() {
         }
+        private RecyclerView mRecyclerView;
+        private MyAdapter mAdapter;
+        private RecyclerView.LayoutManager mLayoutManager;
 
         /**
          * Returns a new instance of this fragment for the given section
@@ -184,14 +170,21 @@ public class Scheduler extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_current_line, container, false);
+
+            mAdapter = new MyAdapter(null);
+
+            mRecyclerView = (RecyclerView) rootView.findViewById(R.id.current_line_recycler);
+
+            mRecyclerView.setHasFixedSize(true);
+
+            // use a linear layout manager
+            mLayoutManager = new LinearLayoutManager(getActivity());
+            mRecyclerView.setLayoutManager(mLayoutManager);
+            mRecyclerView.setAdapter(mAdapter);
             return rootView;
         }
     }
 
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
 
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
@@ -202,8 +195,6 @@ public class Scheduler extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
             return PlaceholderFragment.newInstance(position + 1);
         }
 
