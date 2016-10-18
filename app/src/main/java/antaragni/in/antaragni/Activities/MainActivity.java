@@ -72,48 +72,6 @@ public class MainActivity extends AppCompatActivity
 
     final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
     navigationView.setNavigationItemSelectedListener(this);
-    headerImage=(CircularImageView)(navigationView.getHeaderView(0).findViewById(R.id.imageView));
-    Bundle params = new Bundle();
-    params.putString("fields", "id,email,gender,cover,picture.type(large)");
-    new GraphRequest(AccessToken.getCurrentAccessToken(), "me", params, HttpMethod.GET,
-        new GraphRequest.Callback() {
-          @Override
-          public void onCompleted(GraphResponse response) {
-            if (response != null) {
-              try {
-                JSONObject data = response.getJSONObject();
-                if (data.has("picture")) {
-                  String profilePicUrl = data.getJSONObject("picture").getJSONObject("data").getString("url");
-                  RetrievePic conn=new RetrievePic();
-                  conn.execute(profilePicUrl);
-                }
-              } catch (Exception e) {
-                e.printStackTrace();
-              }
-            }
-          }
-        }).executeAsync();
-  }
-
-  class RetrievePic extends AsyncTask<String, Void, Bitmap> {
-
-    private Exception exception;
-
-    protected Bitmap doInBackground(String... urls) {
-      Bitmap bitmap;
-      try {
-        URL facebookProfileURL= new URL(urls[0]);
-        bitmap = BitmapFactory.decodeStream(facebookProfileURL.openConnection().getInputStream());
-      } catch (Exception e) {
-        this.exception = e;
-        bitmap=null;
-      }
-      return bitmap;
-    }
-
-    protected void onPostExecute(Bitmap bitmap) {
-      headerImage.setImageBitmap(bitmap);
-    }
   }
 
   @Override

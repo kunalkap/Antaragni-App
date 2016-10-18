@@ -46,7 +46,7 @@ public interface DataService {
   Call<ResponseBody> postNewStream(@Path("usertoken") String usertoken, @Body String body);
 
 
-  @GET("database/indiaInspired")
-  Observable<ArrayList<CurrentLine>> inspired();
+  @GET("database/{type}")
+  Observable<ArrayList<CurrentLine>> getData(@Path("type") String type );
 
 }

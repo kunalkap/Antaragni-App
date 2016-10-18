@@ -6,15 +6,12 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import antaragni.in.antaragni.DataHandler.ImageLoader;
@@ -65,7 +62,7 @@ public class ImageAdapter extends BaseAdapter {
       if(currentTab.equals("home")) {
         if (convertView == null) {
           imageView = LayoutInflater.from(parent.getContext())
-              .inflate(R.layout.home_card, parent, false);
+              .inflate(R.layout.linear_card, parent, false);
           ImageAdapter.ViewHolder vh = new ImageAdapter.ViewHolder(imageView);
           imageView.setTag(vh);
         } else {

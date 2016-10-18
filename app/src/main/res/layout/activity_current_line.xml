@@ -21,6 +21,8 @@
     android:layout_gravity="start"
     android:fitsSystemWindows="true"
     app:headerLayout="@layout/nav_header_current_line"
-    app:menu="@menu/activity_current_line_drawer"/>
+    app:menu="@menu/activity_current_line_drawer"
+    app:itemIconTint="?attr/colorAccent"
+    app:itemTextColor="?android:attr/colorAccent"/>
 
 </android.support.v4.widget.DrawerLayout>

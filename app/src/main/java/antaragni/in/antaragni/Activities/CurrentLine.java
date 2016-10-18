@@ -89,19 +89,31 @@ public class CurrentLine extends AppCompatActivity
     int id = item.getItemId();
 
     if (id == R.id.nav_india_haat) {
-      // Handle the camera action
-    } else if (id == R.id.nav_india_inspired) {
-      Fragment f= CurrentLineFragment.newInstance("out","out");
+      Fragment f= CurrentLineFragment.newInstance("indiaHaat","haat");
       fragmentManager.beginTransaction()
           .replace(R.id.content_current_line,f)
-          .addToBackStack(null).commit();
+          .commit();
+    } else if (id == R.id.nav_india_inspired) {
+      Fragment f= CurrentLineFragment.newInstance("indiaInspired","out");
+      fragmentManager.beginTransaction()
+          .replace(R.id.content_current_line,f)
+          .commit();
 
     } else if (id == R.id.nav_classical) {
-
+      Fragment f= CurrentLineFragment.newInstance("classical","classical");
+      fragmentManager.beginTransaction()
+          .replace(R.id.content_current_line,f)
+          .commit();
     } else if (id == R.id.nav_international) {
-
+      Fragment f= CurrentLineFragment.newInstance("carnival","inter");
+      fragmentManager.beginTransaction()
+          .replace(R.id.content_current_line,f)
+          .commit();
     } else if (id == R.id.nav_kavi) {
-
+      Fragment f= CurrentLineFragment.newInstance("kavi","kavi");
+      fragmentManager.beginTransaction()
+          .replace(R.id.content_current_line,f)
+          .commit();
     }
 
     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

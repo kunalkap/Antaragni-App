@@ -49,9 +49,7 @@ public class DataManager {
   public Observable<ArrayList<ImageModel>> getHomePage() {
     return mService.getHomePage();
   }
-  public Observable<ArrayList<CurrentLine>> inspired() {
-    return mService.inspired();
+  public Observable<ArrayList<CurrentLine>> getData(String type) {
+    return mService.getData(type);
   }
-
-
 }

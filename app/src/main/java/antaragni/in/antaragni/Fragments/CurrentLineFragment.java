@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import antaragni.in.antaragni.Adapters.ImageAdapter;
+import antaragni.in.antaragni.Adapters.LineupAdapter;
 import antaragni.in.antaragni.DataHandler.DataManager;
 import antaragni.in.antaragni.DataHandler.RetrofitAddOn;
 import antaragni.in.antaragni.OnFragmentInteractionListener;
@@ -37,8 +40,9 @@ public class CurrentLineFragment extends Fragment {
   private static final String ARG_PARAM2 = "param2";
   private CompositeSubscription mSubscriptions;
   private DataManager mDataManager;
-  private GridView mImageRecycler;
-  private ImageAdapter mRecyclerAdapter;
+  private RecyclerView mImageRecycler;
+  private RecyclerView.LayoutManager mLayoutManager;
+  private LineupAdapter mRecyclerAdapter;
   public EditText mTextView;
   public CurrentLine line;
   // TODO: Rename and change types of parameters
@@ -79,10 +83,12 @@ public class CurrentLineFragment extends Fragment {
                            Bundle savedInstanceState) {
     // Inflate the layout for this fragment
     View v=inflater.inflate(R.layout.fragment_current_line, container, false);
-    mTextView=(EditText) ( v.findViewById(R.id.editText));
-    mImageRecycler = (GridView) v.findViewById(R.id.people);
-    mRecyclerAdapter=ImageAdapter2(null,getActivity(),"out");
+    mImageRecycler = (RecyclerView) v.findViewById(R.id.current_line_recycler);
+    mLayoutManager = new LinearLayoutManager(getActivity());
+    mImageRecycler.setLayoutManager(mLayoutManager);
+    mRecyclerAdapter= new LineupAdapter(getActivity(),null);
     mImageRecycler.setAdapter(mRecyclerAdapter);
+
     return v;
   }
 
@@ -94,7 +100,7 @@ public class CurrentLineFragment extends Fragment {
   }
 
   public void loadData() {
-    mSubscriptions.add(mDataManager.inspired()
+    mSubscriptions.add(mDataManager.getData(mParam1)
         .subscribeOn(Schedulers.io()) // optional if you do not wish to override the default behavior
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(new Subscriber<ArrayList<CurrentLine>> () {
@@ -114,8 +120,7 @@ public class CurrentLineFragment extends Fragment {
 
           @Override
           public void onNext(ArrayList<CurrentLine> list) {
-            mTextView.setText(list.get(0).maintext);
-            mRecyclerAdapter.list=list;
+            mRecyclerAdapter.dataList=list;
             mRecyclerAdapter.notifyDataSetChanged();;
           }
         }));

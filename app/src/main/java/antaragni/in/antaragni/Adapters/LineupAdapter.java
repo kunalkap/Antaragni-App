@@ -5,69 +5,100 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import antaragni.in.antaragni.DataHandler.ImageLoader;
 import antaragni.in.antaragni.DataModels.subEvent;
 import antaragni.in.antaragni.R;
+import antaragni.in.antaragni.serverFields.CurrentLine;
 
 /**
  * Created by varun on 18/10/16.
  */
 
-public class LineupAdapter extends RecyclerView.Adapter<LineupAdapter.ViewHolder> {
-  private String[] mDataset;
+public class LineupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
   private Context mContext;
-  private ArrayList<subEvent> dataList;
-  public static class ViewHolder extends RecyclerView.ViewHolder {
-    public TextView mTextView;
-    public LinearLayout mLinearLayout;
-    public ViewHolder(View v) {
+  public ArrayList<CurrentLine> dataList;
+  public String ENDPOINT="http://www.antaragni.in:7777/";
+  private ImageLoader imageLoader;
+  public static class ViewHolderRest extends RecyclerView.ViewHolder {
+    public ImageView image;
+    public ViewHolderRest(View v) {
       super(v);
-      mLinearLayout=(LinearLayout) v.findViewById(R.id.inside_horizontal_text);
-      mTextView = (TextView) v.findViewById(R.id.name);
+      image=(ImageView) v.findViewById(R.id.image);
     }
   }
-  public LineupAdapter(Context context, ArrayList<subEvent> subEvents) {
+  public static class ViewHolderTop extends RecyclerView.ViewHolder {
+    public LinearLayout mLinearLayout;
+    public TextView textTop;
+    public ViewHolderTop(View v) {
+      super(v);
+      mLinearLayout=(LinearLayout) v.findViewById(R.id.top_text_line_up);
+      textTop=(TextView)v.findViewById(R.id.topText);
+    }
+  }
+  public LineupAdapter(Context context, ArrayList<CurrentLine> list) {
     mContext= context;
-    dataList=subEvents;
+    dataList=list;
+    imageLoader=new ImageLoader(context);
   }
 
   @Override
-  public ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                   int viewType) {
-    // create a new view
-    View v = LayoutInflater.from(parent.getContext())
-        .inflate(R.layout.comp_horizontal_inner_box, parent, false);
-    LineupAdapter.ViewHolder vh = new ViewHolder(v);
+  public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent,
+                                                    int viewType) {
+    RecyclerView.ViewHolder vh;
+
+    switch (viewType) {
+      case 1:
+        View v = LayoutInflater.from(parent.getContext())
+          .inflate(R.layout.current_line_text, parent, false);
+        vh = new ViewHolderTop(v);
+        break;
+      default:
+        View v2 = LayoutInflater.from(parent.getContext())
+            .inflate(R.layout.linear_card, parent, false);
+        vh = new ViewHolderRest(v2);
+    }
     return vh;
   }
 
 
   @Override
-  public void onBindViewHolder(ViewHolder holder, int position) {
-    if(dataList!=null)
-    {
-      holder.mTextView.setText(dataList.get(position).display_name);
-      holder.mTextView.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
+  public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    if(dataList!=null) {
+       if(dataList.get(0)!=null)
+         if(position==0)
+           ((ViewHolderTop)holder).textTop.setText(dataList.get(0).getMaintext());
+          else {
+           imageLoader.DisplayImage(ENDPOINT + dataList.get(0).images.get(position - 1).image.filename, ((ViewHolderRest) holder).image);
+           ImageView img=((ViewHolderRest)holder).image;
+           img.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
 
-        }
-      });
+             }
+           });
+         }
     }
+  }
+
+  @Override
+  public int getItemViewType(int position) {
+    if(position==0)
+      return 1;
     else
-      holder.mTextView.setText("yohooo");
-    if(position%2==0)
-      holder.mLinearLayout.setBackgroundColor(mContext.getResources().getColor(R.color.orange_light));
+      return 2;
   }
 
   @Override
   public int getItemCount() {
     if(dataList!=null)
-      return dataList.size();
+      return dataList.get(0).images.size()+1;
     else
       return 10;
   }
