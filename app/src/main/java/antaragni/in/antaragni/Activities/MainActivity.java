@@ -1,7 +1,11 @@
-package antaragni.in.antaragni;
+package antaragni.in.antaragni.Activities;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,12 +21,31 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.HttpMethod;
+import com.facebook.login.LoginManager;
+import com.github.siyamed.shapeimageview.CircularImageView;
+
+import org.json.JSONObject;
+
+import java.net.URL;
+
+import antaragni.in.antaragni.Fragments.Competitions;
+import antaragni.in.antaragni.Fragments.GridFragment;
+import antaragni.in.antaragni.Fragments.MainFragment;
+import antaragni.in.antaragni.OnFragmentInteractionListener;
+import antaragni.in.antaragni.R;
+
 public class MainActivity extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener, OnFragmentInteractionListener {
   FragmentManager fragmentManager;
+  CircularImageView headerImage;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
     setContentView(R.layout.activity_main);
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
@@ -47,7 +70,7 @@ public class MainActivity extends AppCompatActivity
     drawer.setDrawerListener(toggle);
     toggle.syncState();
 
-    NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+    final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
     navigationView.setNavigationItemSelectedListener(this);
   }
 
@@ -71,6 +94,7 @@ public class MainActivity extends AppCompatActivity
   public void onFragmentInteraction(Uri uri){
 
   }
+
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     // Handle action bar item clicks here. The action bar will
@@ -86,6 +110,7 @@ public class MainActivity extends AppCompatActivity
     return super.onOptionsItemSelected(item);
   }
 
+
   @SuppressWarnings("StatementWithEmptyBody")
   @Override
   public boolean onNavigationItemSelected(MenuItem item) {
@@ -93,7 +118,7 @@ public class MainActivity extends AppCompatActivity
     int id = item.getItemId();
     Drawable image;
     if (id == R.id.nav_competitions) {
-      Fragment f= GridFragment.newInstance("comp");
+      Fragment f= Competitions.newInstance("comp","competitions");
       fragmentManager.beginTransaction()
           .replace(R.id.content_main,f)
           .addToBackStack(null).commit();
@@ -111,24 +136,31 @@ public class MainActivity extends AppCompatActivity
           .addToBackStack(null).commit();
 
     } else if (id == R.id.nav_past_line) {
-      Fragment f= GridFragment.newInstance("past");
+      Fragment f= GridFragment.newInstance("past","pastline");
       fragmentManager.beginTransaction()
           .replace(R.id.content_main,f)
           .addToBackStack(null).commit();
-
-    } else if (id == R.id.nav_register) {
-
 
     } else if (id == R.id.nav_sponsors) {
-      Fragment f= new MainFragment();
+      Fragment f= GridFragment.newInstance("sponsors","sponsors");
       fragmentManager.beginTransaction()
           .replace(R.id.content_main,f)
           .addToBackStack(null).commit();
 
+    }else if (id== R.id.nav_log)
+    {
+      LoginManager.getInstance().logOut();
+      Intent t = new Intent(MainActivity.this, Login.class);
+      startActivity(t);
+    }
+    else if (id==R.id.nav_current_line){
+      Intent t = new Intent(MainActivity.this, CurrentLine.class);
+      startActivity(t);
     }
 
     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
     drawer.closeDrawer(GravityCompat.START);
     return true;
   }
+
 }

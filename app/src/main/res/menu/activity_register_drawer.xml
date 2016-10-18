@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+        <item
+            android:id="@+id/antaragni_register"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Antaragni" />
+        <item
+            android:id="@+id/home_register"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Home" />
+        <item
+            android:id="@+id/guidelines_register"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Guidelines" />
+        <item
+            android:id="@+id/profile_register"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Profile" />
+
+        <item
+            android:id="@+id/edit_register"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Edit" />
+        <item
+            android:id="@+id/logout_register"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Logout" />
+
+
+</menu>

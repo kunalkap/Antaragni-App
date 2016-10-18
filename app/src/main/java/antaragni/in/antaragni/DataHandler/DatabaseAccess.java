@@ -13,7 +13,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import antaragni.in.antaragni.DataModels.Contact;
-import antaragni.in.antaragni.DataModels.Event;
+import antaragni.in.antaragni.DataModels.subEvent;
 import antaragni.in.antaragni.DataModels.Venue;
 
 /**
@@ -84,10 +84,10 @@ public class DatabaseAccess {
     return contactList;
   }
 
-  public List<Event> getEventbyDay(int day)
+  public List<subEvent> getEventbyDay(int day)
   {
     String query = "SELECT * FROM eventdetails WHERE day=" + String.valueOf(day) + " ORDER BY start_time;";
-    List<Event> list = new ArrayList<>();
+    List<subEvent> list = new ArrayList<>();
     Log.wtf("qwe", "geteventstart");
     Cursor cursor = database.rawQuery(query, null);
     cursor.moveToFirst();
@@ -104,15 +104,15 @@ public class DatabaseAccess {
       if(cursor.getString(7).equals("quiz"))  category = "Quiz";
       if(cursor.getString(7).equals("fine_arts"))  category = "Fine Arts";
       if(cursor.getString(7).equals("fmc"))  category = "Films and Media";
-      Event event = new Event(category, cursor.getString(1), start_time, end_time, day, getVenue(cursor.getString(3)), cursor.getString(2), getContact(cursor.getString(7)));
-      list.add(event);
+      //subEvent event = new subEvent(category, cursor.getString(1), start_time, end_time, day, getVenue(cursor.getString(3)), cursor.getString(2), getContact(cursor.getString(7)));
+      //list.add(event);
       cursor.moveToNext();
     }
     cursor.close();
     return list;
   }
 
-  public Event getParticularEvent(String name)
+  public subEvent getParticularEvent(String name)
   {
     String query = "SELECT * FROM eventdetails WHERE name='" + name + "';";
     Cursor cursor = database.rawQuery(query, null);
@@ -132,7 +132,7 @@ public class DatabaseAccess {
     Contact c = getContact(cursor.getString(7));
     if (c==null)
       c = new Contact ("Aayush sultania",category, "Head Events and competitions", "7753920896");
-    Event event = new Event(category, cursor.getString(1), start_time, end_time, day, getVenue(cursor.getString(3)), cursor.getString(2), c);
+    subEvent event=null; //new subEvent(category, cursor.getString(1), start_time, end_time, day, getVenue(cursor.getString(3)), cursor.getString(2), c);
     cursor.moveToNext();
     cursor.close();
     return event;
@@ -155,10 +155,10 @@ public class DatabaseAccess {
     return v;
   }
 
-  public List<Event> getCategory(String category)
+  public List<subEvent> getCategory(String category)
   {
     String query = "SELECT * FROM eventdetails WHERE category='" + category + "' ORDER BY start_time;";
-    List<Event> list = new ArrayList<>();
+    List<subEvent> list = new ArrayList<>();
     int day;
     Cursor cursor = database.rawQuery(query, null);
     cursor.moveToFirst();
@@ -176,9 +176,9 @@ public class DatabaseAccess {
       if(cursor.getString(7).equals("quiz"))  category = "Quiz";
       if(cursor.getString(7).equals("fine_arts"))  category = "Fine Arts";
       if(cursor.getString(7).equals("fmc"))  category = "Films and Media";
-      Event event = new Event(category, cursor.getString(1), start_time, end_time, day, getVenue(cursor.getString(3)), cursor.getString(2), getContact(cursor.getString(7)));
+     // subEvent event = new subEvent(category, cursor.getString(1), start_time, end_time, day, getVenue(cursor.getString(3)), cursor.getString(2), getContact(cursor.getString(7)));
 
-      list.add(event);
+     // list.add(event);
       cursor.moveToNext();
     }
     cursor.close();
