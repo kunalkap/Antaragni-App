@@ -4,11 +4,13 @@ import android.icu.util.Currency;
 
 import java.util.ArrayList;
 
+import antaragni.in.antaragni.Activities.Scheduler;
 import antaragni.in.antaragni.DataModels.Category;
 import antaragni.in.antaragni.serverFields.ContactSchema;
 import antaragni.in.antaragni.serverFields.CurrentLine;
 import antaragni.in.antaragni.serverFields.ImageModel;
 import antaragni.in.antaragni.DataModels.subEvent;
+import antaragni.in.antaragni.serverFields.scheduleparser;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -28,11 +30,14 @@ public interface DataService {
   @GET("database/events")
   Observable<ArrayList<Category>> allEvents();
 
+  @GET("database/schedule")
+  Observable<ArrayList<scheduleparser>> getSchedule();
+
   @GET("database/sponsors")
   Observable<ArrayList<ImageModel>> allSponsors();
 
-  @GET("database/schedule")
-  Observable getSchedule();
+  @GET("database/contacts")
+  Observable allContacts();
 
   @GET("database/lineup")
   Observable<ArrayList<ImageModel>> pastLineup();

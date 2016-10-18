@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
 
+import antaragni.in.antaragni.Utilities.utils;
 import antaragni.in.antaragni.serialisation.ExcludeSerialization;
 import okhttp3.Cache;
 import okhttp3.CookieJar;
@@ -44,6 +45,19 @@ public class RetrofitAddOn {
 
     OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
     okHttpClientBuilder
+        .cache(new Cache(context.getCacheDir(), 10 * 1024 * 1024)) // 10 MB
+        .addInterceptor(new Interceptor() {
+          @Override
+          public Response intercept(Chain chain) throws IOException {
+            Request request = chain.request();
+            if (utils.isNetworkAvailable(context)) {
+              request = request.newBuilder().header("Cache-Control", "public, max-age=" + 60 * 60).build();
+            } else {
+              request = request.newBuilder().header("Cache-Control", "public, only-if-cached, max-stale=" + 60 * 60 * 24).build();
+            }
+            return chain.proceed(request);
+          }
+        })
         .addInterceptor(interceptor)
         .addNetworkInterceptor(new StethoInterceptor())
         .cache(new Cache(context.getCacheDir(), 10 * 1024 * 1024)) // 10 MB
