@@ -41,7 +41,7 @@ public class ContactSchema {
   }
 
 
-  public String getNumber() {
+  public String getnumber() {
     return number;
   }
 

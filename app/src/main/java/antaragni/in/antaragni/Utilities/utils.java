@@ -1,5 +1,8 @@
 package antaragni.in.antaragni.Utilities;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -29,4 +32,10 @@ public class utils {
     }
     catch(Exception ex){}
   }
+
+
+    public static boolean isNetworkAvailable(Context context) {
+      ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+      return connectivityManager.getActiveNetworkInfo() != null;
+    }
 }

@@ -17,7 +17,7 @@ import antaragni.in.antaragni.serverFields.scheduleparser;
  */
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-    private ArrayList<scheduleparser> mDataset;
+    public ArrayList<scheduleparser> mDataset;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -31,7 +31,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         public ViewHolder(View v) {
             super(v);
             name = (TextView) v.findViewById(R.id.Name);
-            venue = (TextView) v.findViewById(R.id.Event);
+            venue = (TextView) v.findViewById(R.id.Venue);
             time = (TextView) v.findViewById(R.id.Time);
         }
     }
@@ -58,15 +58,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.name.setText(mDataset.);
-        holder.venue.setText(mDataset[5]);
-        holder.time.setText(mDataset[4]);
+        holder.name.setText(mDataset.get(position).eventname);
+        holder.venue.setText(mDataset.get(position).endtime);
+        holder.time.setText(mDataset.get(position).venue);
 
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        if(mDataset!=null)
+            return mDataset.size();
+        else
+            return 0;
     }
 }

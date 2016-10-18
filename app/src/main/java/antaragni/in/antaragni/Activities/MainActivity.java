@@ -36,6 +36,7 @@ import antaragni.in.antaragni.Fragments.Competitions;
 import antaragni.in.antaragni.Fragments.ContactFragment;
 import antaragni.in.antaragni.Fragments.GridFragment;
 import antaragni.in.antaragni.Fragments.MainFragment;
+import antaragni.in.antaragni.Fragments.Sponsors;
 import antaragni.in.antaragni.OnFragmentInteractionListener;
 import antaragni.in.antaragni.R;
 
@@ -141,7 +142,7 @@ public class MainActivity extends AppCompatActivity
           .addToBackStack(null).commit();
 
     } else if (id == R.id.nav_sponsors) {
-      Fragment f= MainFragment.newInstance("sponsors");
+      Fragment f= new Sponsors();
       fragmentManager.beginTransaction()
           .replace(R.id.content_main,f)
           .addToBackStack(null).commit();
