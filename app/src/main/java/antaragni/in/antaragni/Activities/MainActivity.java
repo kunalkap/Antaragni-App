@@ -39,6 +39,7 @@ import antaragni.in.antaragni.Fragments.MainFragment;
 import antaragni.in.antaragni.Fragments.Sponsors;
 import antaragni.in.antaragni.OnFragmentInteractionListener;
 import antaragni.in.antaragni.R;
+import rx.Scheduler;
 
 public class MainActivity extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener, OnFragmentInteractionListener {
@@ -132,7 +133,7 @@ public class MainActivity extends AppCompatActivity
           .addToBackStack(null).commit();
 
     } else if (id == R.id.nav_schedule){
-      Intent t = new Intent(MainActivity.this,Scheduler.class);
+      Intent t = new Intent(MainActivity.this, SchedulerActivity.class);
       startActivity(t);
     }
     else if (id == R.id.nav_past_line) {
