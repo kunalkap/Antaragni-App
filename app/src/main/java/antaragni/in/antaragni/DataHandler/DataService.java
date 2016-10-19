@@ -7,6 +7,7 @@ import antaragni.in.antaragni.serverFields.ContactSchema;
 import antaragni.in.antaragni.serverFields.CurrentLine;
 import antaragni.in.antaragni.serverFields.ImageModel;
 import antaragni.in.antaragni.DataModels.subEvent;
+import antaragni.in.antaragni.serverFields.link;
 import antaragni.in.antaragni.serverFields.scheduleparser;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -48,7 +49,14 @@ public interface DataService {
   @GET("database/contacts")
   Observable<ArrayList<ContactSchema>> getContacts();
 
+  @GET("database/about")
+  Observable<link> getAbout();
+
+
+
   @GET("database/{type}")
   Observable<ArrayList<CurrentLine>> getData(@Path("type") String type );
+
+
 
 }

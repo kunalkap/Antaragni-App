@@ -20,6 +20,7 @@ import android.webkit.WebView;
 
 import antaragni.in.antaragni.Fragments.CurrentLineFragment;
 import antaragni.in.antaragni.Fragments.GridFragment;
+import antaragni.in.antaragni.Fragments.MainFragment;
 import antaragni.in.antaragni.OnFragmentInteractionListener;
 import antaragni.in.antaragni.R;
 
@@ -35,9 +36,10 @@ public class CurrentLine extends AppCompatActivity
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
     WebView myWebView = (WebView) findViewById(R.id.webview);
+    myWebView.loadUrl("https://www.antaragni.in/currentLineUp_app");
     WebSettings webSettings = myWebView.getSettings();
     webSettings.setJavaScriptEnabled(true);
-    myWebView.loadUrl("https://www.antaragni.in/currentLineUp");
+
     fragmentManager=getSupportFragmentManager();
     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
     fab.setOnClickListener(new View.OnClickListener() {
@@ -120,6 +122,12 @@ public class CurrentLine extends AppCompatActivity
       fragmentManager.beginTransaction()
           .replace(R.id.content_current_line,f)
           .commit();
+    }else if (id == R.id.nav_Home) {
+      Fragment f= new MainFragment();
+      fragmentManager.beginTransaction()
+              .replace(R.id.content_main,f)
+              .commit();
+
     }
 
     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

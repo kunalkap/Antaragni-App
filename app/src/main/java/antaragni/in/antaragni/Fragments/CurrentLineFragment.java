@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ListView;
@@ -71,11 +73,9 @@ public class CurrentLineFragment extends Fragment {
       mParam1 = getArguments().getString(ARG_PARAM1);
       mParam2 = getArguments().getString(ARG_PARAM2);
     }
-    mSubscriptions=new CompositeSubscription();
+
     RetrofitAddOn retrofitAddOn= RetrofitAddOn.getInstance(getActivity().getApplicationContext());
-    mDataManager=new DataManager(getActivity().getApplicationContext());
-    mDataManager.mService=retrofitAddOn.newUserService();
-    loadData();
+
   }
 
   @Override
@@ -83,11 +83,10 @@ public class CurrentLineFragment extends Fragment {
                            Bundle savedInstanceState) {
     // Inflate the layout for this fragment
     View v=inflater.inflate(R.layout.fragment_current_line, container, false);
-    mImageRecycler = (RecyclerView) v.findViewById(R.id.current_line_recycler);
-    mLayoutManager = new LinearLayoutManager(getActivity());
-    mImageRecycler.setLayoutManager(mLayoutManager);
-    mRecyclerAdapter= new LineupAdapter(getActivity(),null);
-    mImageRecycler.setAdapter(mRecyclerAdapter);
+    WebView myWebView = (WebView) v.findViewById(R.id.webviewcf);
+    WebSettings webSettings = myWebView.getSettings();
+    webSettings.setJavaScriptEnabled(true);
+    myWebView.loadUrl("https://www.antaragni.in/"+mParam1+"_app");
 
     return v;
   }
@@ -142,12 +141,6 @@ public class CurrentLineFragment extends Fragment {
   public void onDetach() {
     super.onDetach();
     mListener = null;
-  }
-
-  @Override
-  public void onDestroy() {
-    this.mSubscriptions.unsubscribe();
-    super.onDestroy();
   }
 
 }
