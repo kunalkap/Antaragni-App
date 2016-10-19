@@ -2,26 +2,44 @@ package antaragni.in.antaragni.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.concurrent.RunnableFuture;
 
 import antaragni.in.antaragni.Activities.MainActivity;
 import antaragni.in.antaragni.DataHandler.ImageLoader;
 import antaragni.in.antaragni.DataModels.Category;
 import antaragni.in.antaragni.Utilities.EncodingUtil;
+import antaragni.in.antaragni.Utilities.utils;
 import antaragni.in.antaragni.serverFields.CurrentLine;
 import antaragni.in.antaragni.serverFields.ImageModel;
 import antaragni.in.antaragni.R;
+import us.feras.mdv.MarkdownView;
+
+import static android.R.attr.bitmap;
 
 /**
  * Created by varun on 3/10/16.
@@ -33,6 +51,8 @@ public class ImageAdapter extends BaseAdapter {
   public Drawable mDrawable;
   public ArrayList<Category> dataList;
   public ArrayList<ImageModel> imageLinks;
+  public ArrayList<ViewHoldertype> holderArray=new ArrayList<>();
+  public TextView mMarkDownView;
   public ArrayList<CurrentLine> list;
   public ImageLoader imageLoader;
   public Object getItem(int position) {
@@ -46,10 +66,17 @@ public class ImageAdapter extends BaseAdapter {
   public class ViewHoldertype{
     public ImageView img;
     public RecyclerView recycler;
+ //   public TextView markdownView;
     public ViewHoldertype(View v) {
       this.img= (ImageView) v.findViewById(R.id.image);
       this.recycler=(RecyclerView) v.findViewById(R.id.horizontal_scroll);
-    }
+//      this.markdownView=(TextView) v.findViewById(R.id.extras);
+
+//      mMarkDownView.getSettings().setAppCacheMaxSize( 10 * 1024 * 1024 ); // 10MB
+//      mMarkDownView.getSettings().setAllowFileAccess( true );
+//      mMarkDownView.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+//      mMarkDownView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+   }
   }
   public class ViewHolder{
     public View img;
@@ -101,6 +128,8 @@ public class ImageAdapter extends BaseAdapter {
                 ((MainActivity)mContext).openFragment(R.id.nav_about);
               else if (type.equals("contact"))
                 ((MainActivity)mContext).openFragment(R.id.nav_contact);
+              else if (type.equals("star"))
+                ((MainActivity)mContext).openFragment(R.id.nav_star_attraction);
             }
           });
         }
@@ -124,6 +153,7 @@ public class ImageAdapter extends BaseAdapter {
           imageView = LayoutInflater.from(parent.getContext()).inflate(R.layout.comp_horizontal_recycler, parent, false);
           ImageAdapter.ViewHoldertype vh = new ImageAdapter.ViewHoldertype(imageView);
           imageView.setTag(vh);
+
         }
         else
           imageView=convertView;
@@ -133,10 +163,11 @@ public class ImageAdapter extends BaseAdapter {
             LinearLayoutManager.HORIZONTAL, false);
         vh.recycler.setLayoutManager(layoutManager);
         if(dataList!=null) {
-          vh.recycler.setAdapter(new CompAdapter(mContext, dataList.get(position).subevents));
+          vh.recycler.setAdapter(new CompAdapter(mContext, dataList.get(position).subevents,this,position));
           //Log.v("hello",""+dataList.get(position).Event);
           if(dataList.get(position).image!=null)
           imageLoader.DisplayImage(ENDPOINT + dataList.get(position).image.filename, (ImageView) (vh.img));
+    //      holderArray.add(vh);
         }
       }else if (currentTab.equals("out")) {
         if (convertView == null) {
@@ -165,9 +196,45 @@ public class ImageAdapter extends BaseAdapter {
           }
         }
       }
+
     return imageView;
   }
 
+//  public void opentext(final String maintext, final int position){
+//    if(holderArray.get(position).markdownView!=null){
+//
+//      new Thread(new Runnable() {
+//        @Override
+//        public void run() {
+//          try {
+//            String md = "";
+//            URL imageUrl = new URL(ENDPOINT + maintext);
+//            HttpURLConnection conn = (HttpURLConnection) imageUrl.openConnection();
+//            conn.setConnectTimeout(30000);
+//            conn.setReadTimeout(30000);
+//            conn.setInstanceFollowRedirects(true);
+//            InputStream is = conn.getInputStream();
+//            Scanner sc = new Scanner(is);
+//            while (sc.hasNextLine()) {
+//              md += sc.nextLine() + '\n';
+//            }
+//            Log.v("logging   ",""+md);
+//            final String newMD=md;
+//            ((MainActivity)mContext).runOnUiThread(new Runnable() {
+//              @Override
+//              public void run() {
+//                holderArray.get(position).markdownView.setText(newMD);
+//                Log.v("Looggin",newMD);
+//
+//              }
+//            });
+//          } catch (Throwable ex) {
+//            ex.printStackTrace();
+//          }
+//        }
+//      }).start();
+//      }
+//    }
 
   public ImageAdapter(Drawable drawable, ArrayList<Category> list, Context c, String tab) {
     mDrawable=drawable;

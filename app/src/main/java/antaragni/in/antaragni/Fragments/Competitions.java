@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTabHost;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,7 +46,7 @@ public class Competitions extends Fragment {
   private Drawable mDrawable;
   private CompositeSubscription mSubscriptions;
   private DataManager mDataManager;
-  public ListView listview;
+  private FragmentTabHost mTabHost;
   public ArrayList<Category> eventsList;
   public ImageAdapter recylclerAdapter;
   public static Competitions newInstance(String param1,String param2) {
@@ -82,6 +83,7 @@ public class Competitions extends Fragment {
     ListView listview = (ListView) v.findViewById(R.id.category);
     recylclerAdapter=new ImageAdapter(mDrawable,eventsList,getActivity(),"competitions");
     listview.setAdapter(recylclerAdapter);
+
     setImage();
     return v;
   }

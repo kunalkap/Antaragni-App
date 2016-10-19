@@ -44,7 +44,7 @@ public class CurrentLine extends AppCompatActivity
     WebSettings webSettings = myWebView.getSettings();
     webSettings.setJavaScriptEnabled(true);
     webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-
+    webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
     fragmentManager=getSupportFragmentManager();
     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
     fab.setOnClickListener(new View.OnClickListener() {
