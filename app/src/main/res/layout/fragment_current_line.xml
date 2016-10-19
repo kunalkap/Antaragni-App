@@ -5,10 +5,16 @@
              android:layout_height="match_parent"
              tools:context="antaragni.in.antaragni.Fragments.CurrentLineFragment"
   android:gravity="center_horizontal"
-  android:orientation="vertical">
+  android:orientation="vertical"
+    android:weightSum="1">
   <android.support.v7.widget.RecyclerView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/current_line_recycler">
   </android.support.v7.widget.RecyclerView>
+  <WebView  xmlns:android="http://schemas.android.com/apk/res/android"
+      android:id="@+id/contact_view"
+      android:layout_width="357dp"
+      android:layout_height="530dp"
+      android:layout_weight="0.38" />
 </LinearLayout>
