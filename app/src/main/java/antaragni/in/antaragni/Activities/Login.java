@@ -1,6 +1,7 @@
 package antaragni.in.antaragni.Activities;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.support.v7.app.AppCompatActivity;
@@ -35,6 +36,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(this.getApplicationContext());
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_login);
         AppEventsLogger.activateApp(this);
       if(AccessToken.getCurrentAccessToken()!=null)
