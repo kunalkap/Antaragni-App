@@ -118,6 +118,12 @@ public class CurrentLine extends AppCompatActivity
       Intent t = new Intent(CurrentLine.this, MainActivity.class);
       startActivity(t);
 
+    }else if (id == R.id.nav_star_attraction) {
+      Fragment f= CurrentLineFragment.newInstance("star","classical");
+      fragmentManager.beginTransaction()
+              .replace(R.id.content_current_line,f)
+              .commit();
+
     }
 
     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
