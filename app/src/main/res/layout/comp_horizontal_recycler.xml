@@ -35,7 +35,13 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/horizontal_scroll"
-    android:orientation="horizontal"></android.support.v7.widget.RecyclerView>
+    android:orientation="horizontal"
+      android:scrollbars="horizontal"
+      android:scrollbarSize="@dimen/cardview_default_elevation"
+      android:scrollbarStyle="insideOverlay">
+  </android.support.v7.widget.RecyclerView>
+
+
 
   </LinearLayout>
 </android.support.v7.widget.CardView>

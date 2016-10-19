@@ -3,6 +3,10 @@
 
   <group android:checkableBehavior="single">
     <item
+        android:id="@+id/nav_Home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Home"></item>
+    <item
       android:id="@+id/nav_classical"
       android:icon="@drawable/music"
       android:title="Classical Night"/>
@@ -22,6 +26,10 @@
       android:id="@+id/nav_kavi"
       android:icon="@drawable/check_square_o"
       android:title="Kavi Sammelan"/>
+    <item
+        android:id="@+id/nav_star_attraction"
+        android:icon="@drawable/ic_star_half_black_24dp"
+        android:title="Star Attraction"></item>
   </group>
 
 </menu>

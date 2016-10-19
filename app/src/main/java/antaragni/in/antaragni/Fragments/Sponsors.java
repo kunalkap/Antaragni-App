@@ -28,7 +28,7 @@ public class Sponsors extends Fragment {
     // Inflate the layout for this fragment
     View v=inflater.inflate(R.layout.fragment_sponsors, container, false);
     WebView myWebView = (WebView) v.findViewById(R.id.webview);
-    myWebView.loadUrl("https://www.antaragni.in/sponsors");
+    myWebView.loadUrl("https://www.antaragni.in/sponsors_app");
     myWebView.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
     myWebView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
     return v;
