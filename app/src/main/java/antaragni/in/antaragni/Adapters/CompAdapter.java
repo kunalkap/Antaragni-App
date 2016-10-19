@@ -3,6 +3,7 @@ package antaragni.in.antaragni.Adapters;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,8 @@ public class CompAdapter extends RecyclerView.Adapter<CompAdapter.ViewHolder>{
   private String[] mDataset;
   private Context mContext;
   private ArrayList<subEvent> dataList;
+  public ImageAdapter mAdapter;
+  public int position1;
   public static class ViewHolder extends RecyclerView.ViewHolder {
     public TextView mTextView;
     public LinearLayout mLinearLayout;
@@ -31,9 +34,11 @@ public class CompAdapter extends RecyclerView.Adapter<CompAdapter.ViewHolder>{
       mTextView = (TextView) v.findViewById(R.id.name);
     }
   }
-  public CompAdapter(Context context, ArrayList<subEvent> subEvents) {
+  public CompAdapter(Context context, ArrayList<subEvent> subEvents,ImageAdapter adapter,int parentPosition) {
     mContext= context;
     dataList=subEvents;
+    mAdapter=adapter;
+    position1=parentPosition;
   }
 
   @Override
@@ -48,14 +53,15 @@ public class CompAdapter extends RecyclerView.Adapter<CompAdapter.ViewHolder>{
 
 
   @Override
-  public void onBindViewHolder(ViewHolder holder, int position) {
+  public void onBindViewHolder(ViewHolder holder, final int position) {
     if(dataList!=null)
     {
     holder.mTextView.setText(dataList.get(position).display_name);
     holder.mTextView.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-
+//        Log.v("logging","on click fired");
+//        mAdapter.opentext(dataList.get(position).getMainText().filename,position1);
       }
     });
     }

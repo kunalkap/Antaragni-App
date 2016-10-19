@@ -88,7 +88,7 @@ public class CurrentLineFragment extends Fragment {
     webSettings.setJavaScriptEnabled(true);
     myWebView.loadUrl("https://www.antaragni.in/"+mParam1+"_app");
     webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-    myWebView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+    myWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
     return v;
   }
 

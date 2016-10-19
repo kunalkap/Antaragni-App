@@ -5,6 +5,8 @@ import android.content.pm.ActivityInfo;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -30,6 +32,13 @@ import java.util.HashMap;
 import antaragni.in.antaragni.Adapters.MyAdapter;
 import antaragni.in.antaragni.DataHandler.DataManager;
 import antaragni.in.antaragni.DataHandler.RetrofitAddOn;
+import antaragni.in.antaragni.Fragments.About_fragment;
+import antaragni.in.antaragni.Fragments.Competitions;
+import antaragni.in.antaragni.Fragments.ContactFragment;
+import antaragni.in.antaragni.Fragments.GridFragment;
+import antaragni.in.antaragni.Fragments.MainFragment;
+import antaragni.in.antaragni.Fragments.Sponsors;
+import antaragni.in.antaragni.OnFragmentInteractionListener;
 import antaragni.in.antaragni.R;
 import antaragni.in.antaragni.serverFields.scheduleparser;
 import retrofit2.adapter.rxjava.HttpException;
@@ -55,7 +64,7 @@ public class SchedulerActivity extends AppCompatActivity {
    * The {@link ViewPager} that will host the section contents.
    */
   private ViewPager mViewPager;
-
+  FragmentManager fragmentManager;
   private CompositeSubscription mSubscriptions;
   public HashMap<String,ArrayList<scheduleparser>> mDataSet;
   private DataManager mDataManager;
@@ -66,7 +75,7 @@ public class SchedulerActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     setContentView(R.layout.activity_scheduler);
-
+    fragmentManager=getSupportFragmentManager();
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 
@@ -88,11 +97,6 @@ public class SchedulerActivity extends AppCompatActivity {
     });
 
   }
-
-
-
-
-
 
 
 
