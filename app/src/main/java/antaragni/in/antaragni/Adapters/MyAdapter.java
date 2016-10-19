@@ -60,7 +60,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         // - get element from your dataset at this position
                if(mDataset!=null) { // - replace the contents of the view with that element
                    holder.name.setText(mDataset.get(position).EventName);
-                   holder.venue.setText(mDataset.get(position).EndTime);
+                   holder.venue.setText(mDataset.get(position).StartTime);
                    holder.time.setText(mDataset.get(position).Venue);
                }
     }
