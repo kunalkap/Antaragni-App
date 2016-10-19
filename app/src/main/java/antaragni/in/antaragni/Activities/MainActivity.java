@@ -1,6 +1,7 @@
 package antaragni.in.antaragni.Activities;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity
 
     super.onCreate(savedInstanceState);
     fragmentManager=getSupportFragmentManager();
+    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     setContentView(R.layout.activity_main);
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);

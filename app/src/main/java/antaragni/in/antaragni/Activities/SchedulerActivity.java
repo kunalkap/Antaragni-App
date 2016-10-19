@@ -1,5 +1,6 @@
 package antaragni.in.antaragni.Activities;
 
+import android.content.pm.ActivityInfo;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -62,6 +63,7 @@ public class SchedulerActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     setContentView(R.layout.activity_scheduler);
 
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
