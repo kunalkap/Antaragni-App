@@ -26,6 +26,7 @@ import antaragni.in.antaragni.Fragments.GridFragment;
 import antaragni.in.antaragni.Fragments.MainFragment;
 import antaragni.in.antaragni.OnFragmentInteractionListener;
 import antaragni.in.antaragni.R;
+import antaragni.in.antaragni.Utilities.utils;
 
 public class CurrentLine extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener, OnFragmentInteractionListener {
@@ -44,7 +45,10 @@ public class CurrentLine extends AppCompatActivity
     WebSettings webSettings = myWebView.getSettings();
     webSettings.setJavaScriptEnabled(true);
     webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-    webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
+    if(utils.isNetworkAvailable(this))
+      webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+    else
+      webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
     fragmentManager=getSupportFragmentManager();
     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
     fab.setOnClickListener(new View.OnClickListener() {
@@ -75,14 +79,6 @@ public class CurrentLine extends AppCompatActivity
       super.onBackPressed();
     }
   }
-
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    // Inflate the menu; this adds items to the action bar if it is present.
-    getMenuInflater().inflate(R.menu.current_line, menu);
-    return true;
-  }
-
 
   @SuppressWarnings("StatementWithEmptyBody")
   @Override
