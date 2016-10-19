@@ -1,6 +1,8 @@
 package antaragni.in.antaragni.Fragments;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -36,10 +39,11 @@ public class MainFragment extends Fragment {
   private String tab="home";
   private String mParam;
   private View mProgressContainer;
+
   public MainFragment() {
 
   }
-
+  Context context=getActivity();
   public static MainFragment newInstance(String param1) {
     MainFragment fragment = new MainFragment();
     Bundle args = new Bundle();
@@ -50,6 +54,7 @@ public class MainFragment extends Fragment {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
     if (getArguments() != null) {
       mParam = getArguments().getString(ARG_PARAM1);
       tab="sponsors";
@@ -67,6 +72,7 @@ public class MainFragment extends Fragment {
                            Bundle savedInstanceState) {
     // Inflate the layout for this fragment
     View v= inflater.inflate(R.layout.fragment_main, container, false);
+
     mProgressContainer = v.findViewById(R.id.progress_container);
     mImageRecycler = (ListView) v.findViewById(R.id.imageView);
     mRecyclerAdapter = new ImageAdapter(null,getActivity(),tab);
@@ -161,5 +167,7 @@ public class MainFragment extends Fragment {
     this.mSubscriptions.unsubscribe();
     super.onDestroy();
   }
+
+
 
 }
