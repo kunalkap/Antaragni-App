@@ -5,53 +5,53 @@ package antaragni.in.antaragni.serverFields;
  */
 
 public class scheduleparser {
-    public String eventname;
-    public String starttime;
-    public String endtime;
-    public String venue;
-    public int day;
+    public String EventName;
+    public String StartTime;
+    public String EndTime;
+    public String Venue;
+    public int Day;
 
     public int getDay() {
-        return day;
+        return Day;
     }
 
     public void setDay(int day) {
-        this.day = day;
+        this.Day = day;
     }
 
     public String getVenue() {
 
-        return venue;
+        return Venue;
     }
 
     public void setVenue(String venue) {
-        this.venue = venue;
+        this.Venue = venue;
     }
 
     public String getEndtime() {
 
-        return endtime;
+        return EndTime;
     }
 
     public void setEndtime(String endtime) {
-        this.endtime = endtime;
+        this.EndTime = endtime;
     }
 
     public String getStarttime() {
 
-        return starttime;
+        return StartTime;
     }
 
     public void setStarttime(String starttime) {
-        this.starttime = starttime;
+        this.StartTime = starttime;
     }
 
     public String getEventname() {
 
-        return eventname;
+        return EventName;
     }
 
     public void setEventname(String eventname) {
-        this.eventname = eventname;
+        this.EventName = eventname;
     }
 }

@@ -27,8 +27,8 @@ public interface DataService {
   @GET("database/events")
   Observable<ArrayList<Category>> allEvents();
 
-  @GET("database/schedule")
-  Observable<ArrayList<scheduleparser>> getSchedule();
+  @GET("database/schedule/{type}")
+  Observable<ArrayList<scheduleparser>> getSchedule(@Path("type") String type);
 
   @GET("database/sponsors")
   Observable<ArrayList<ImageModel>> allSponsors();

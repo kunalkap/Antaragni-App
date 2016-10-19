@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import antaragni.in.antaragni.Adapters.MyAdapter;
 import antaragni.in.antaragni.DataHandler.DataManager;
@@ -53,7 +54,9 @@ public class SchedulerActivity extends AppCompatActivity {
    */
   private ViewPager mViewPager;
 
-
+  private CompositeSubscription mSubscriptions;
+  public HashMap<String,ArrayList<scheduleparser>> mDataSet;
+  private DataManager mDataManager;
 
 
   @Override
@@ -66,11 +69,11 @@ public class SchedulerActivity extends AppCompatActivity {
 
     // Set up the ViewPager with the sections adapter.
     mViewPager = (ViewPager) findViewById(R.id.container);
-    mViewPager.setAdapter(mSectionsPagerAdapter);
-    mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+
     TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
     tabLayout.setupWithViewPager(mViewPager);
-
+    mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+    mViewPager.setAdapter(mSectionsPagerAdapter);
     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -79,30 +82,14 @@ public class SchedulerActivity extends AppCompatActivity {
             .setAction("Action", null).show();
       }
     });
+
   }
 
 
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    // Inflate the menu; this adds items to the action bar if it is present.
-    getMenuInflater().inflate(R.menu.menu_scheduler, menu);
-    return true;
-  }
 
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    // Handle action bar item clicks here. The action bar will
-    // automatically handle clicks on the Home/Up button, so long
-    // as you specify a parent activity in AndroidManifest.xml.
-    int id = item.getItemId();
 
-    //noinspection SimplifiableIfStatement
-    if (id == R.id.action_settings) {
-      return true;
-    }
 
-    return super.onOptionsItemSelected(item);
-  }
+
 
 
   /**
@@ -116,10 +103,12 @@ public class SchedulerActivity extends AppCompatActivity {
     private static final String ARG_SECTION_NUMBER = "section_number";
     private CompositeSubscription mSubscriptions;
     public ArrayList<scheduleparser> mDataset;
-    public ArrayList<ArrayList<scheduleparser>> daywiselist;
+    public int day;
     private DataManager mDataManager;
+
     public PlaceholderFragment() {
     }
+
     private RecyclerView mRecyclerView;
     private MyAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -135,17 +124,43 @@ public class SchedulerActivity extends AppCompatActivity {
       fragment.setArguments(args);
       return fragment;
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
+      if (getArguments() != null)
+        day = getArguments().getInt(ARG_SECTION_NUMBER);
+
+      Log.v("helllo", "my day is " + day);
+      mAdapter = new MyAdapter(null);
+      RetrofitAddOn retrofitAddOn = RetrofitAddOn.getInstance(getActivity().getApplicationContext());
+      mDataManager = new DataManager(getActivity().getApplicationContext());
       mSubscriptions=new CompositeSubscription();
-      RetrofitAddOn retrofitAddOn= RetrofitAddOn.getInstance(getActivity().getApplicationContext());
-      mDataManager=new DataManager(getActivity().getApplicationContext());
-      mDataManager.mService=retrofitAddOn.newUserService();
+      mDataManager.mService = retrofitAddOn.newUserService();
       loadData();
+
     }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+      View rootView = inflater.inflate(R.layout.fragment_current_line, container, false);
+
+
+      mRecyclerView = (RecyclerView) rootView.findViewById(R.id.current_line_recycler);
+
+      mRecyclerView.setHasFixedSize(true);
+
+      // use a linear layout manager
+      mLayoutManager = new LinearLayoutManager(getActivity());
+      mRecyclerView.setLayoutManager(mLayoutManager);
+      mRecyclerView.setAdapter(mAdapter);
+      return rootView;
+    }
+
     public void loadData() {
-      mSubscriptions.add(mDataManager.getSchedule()
+      mSubscriptions.add(mDataManager.getSchedule(""+day)
           .subscribeOn(Schedulers.io()) // optional if you do not wish to override the default behavior
           .observeOn(AndroidSchedulers.mainThread())
           .subscribe(new Subscriber<ArrayList<scheduleparser>>() {
@@ -165,33 +180,19 @@ public class SchedulerActivity extends AppCompatActivity {
 
             @Override
             public void onNext(ArrayList<scheduleparser> list) {
-              mDataset = list;
+              mDataset=list;
               mAdapter.mDataset=mDataset;
               mAdapter.notifyDataSetChanged();
             }
           }));
     }
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-      View rootView = inflater.inflate(R.layout.fragment_current_line, container, false);
-
-      mAdapter = new MyAdapter(null,3);
-
-      mRecyclerView = (RecyclerView) rootView.findViewById(R.id.current_line_recycler);
-
-      mRecyclerView.setHasFixedSize(true);
-
-      // use a linear layout manager
-      mLayoutManager = new LinearLayoutManager(getActivity());
-      mRecyclerView.setLayoutManager(mLayoutManager);
-      mRecyclerView.setAdapter(mAdapter);
-      return rootView;
+    public void onDestroy() {
+      this.mSubscriptions.unsubscribe();
+      super.onDestroy();
     }
+
   }
-
-
 
   public class SectionsPagerAdapter extends FragmentPagerAdapter {
 

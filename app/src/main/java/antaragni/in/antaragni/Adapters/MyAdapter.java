@@ -2,6 +2,7 @@ package antaragni.in.antaragni.Adapters;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,9 +38,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(ArrayList<scheduleparser> myDataset, int date) {
-        mDataset = myDataset;
-        day= date;
+    public MyAdapter(ArrayList<scheduleparser> myDataset) {
+        mDataset=myDataset;
     }
 
     // Create new views (invoked by the layout manager)
@@ -48,7 +48,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                                                    int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_scheduler, parent, false);
+                .inflate(R.layout.fragment_scheduler, parent, false);
         // set the view's size, margins, paddings and layout parameters
         ViewHolder vh = new ViewHolder(v);
         return vh;
@@ -58,11 +58,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-        holder.name.setText(mDataset.get(position).eventname);
-        holder.venue.setText(mDataset.get(position).endtime);
-        holder.time.setText(mDataset.get(position).venue);
-
+               if(mDataset!=null) { // - replace the contents of the view with that element
+                   holder.name.setText(mDataset.get(position).EventName);
+                   holder.venue.setText(mDataset.get(position).EndTime);
+                   holder.time.setText(mDataset.get(position).Venue);
+               }
     }
 
     // Return the size of your dataset (invoked by the layout manager)
