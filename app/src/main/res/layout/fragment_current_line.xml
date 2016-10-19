@@ -7,11 +7,13 @@
   android:gravity="center_horizontal"
   android:orientation="vertical"
     android:weightSum="1">
+
   <android.support.v7.widget.RecyclerView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/current_line_recycler">
   </android.support.v7.widget.RecyclerView>
+
   <WebView  xmlns:android="http://schemas.android.com/apk/res/android"
       android:id="@+id/webviewcf"
       android:layout_width="fill_parent"
