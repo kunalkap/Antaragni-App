@@ -1,5 +1,6 @@
 package antaragni.in.antaragni.Activities;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -80,8 +81,9 @@ public class SchedulerActivity extends AppCompatActivity {
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-            .setAction("Action", null).show();
+        Intent t = new Intent(SchedulerActivity.this, MainActivity.class);
+        t.putExtra("starter","current");
+        startActivity(t);
       }
     });
 
