@@ -1,5 +1,6 @@
 package antaragni.in.antaragni.Activities;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -18,6 +19,7 @@ import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
+import antaragni.in.antaragni.Fragments.ContactFragment;
 import antaragni.in.antaragni.Fragments.CurrentLineFragment;
 import antaragni.in.antaragni.Fragments.GridFragment;
 import antaragni.in.antaragni.Fragments.MainFragment;
@@ -46,8 +48,9 @@ public class CurrentLine extends AppCompatActivity
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-            .setAction("Action", null).show();
+        Intent t = new Intent(CurrentLine.this, MainActivity.class);
+        t.putExtra("starter","current");
+        startActivity(t);
       }
     });
 
@@ -112,10 +115,8 @@ public class CurrentLine extends AppCompatActivity
           .replace(R.id.content_current_line,f)
           .commit();
     }else if (id == R.id.nav_Home) {
-      Fragment f= new MainFragment();
-      fragmentManager.beginTransaction()
-              .replace(R.id.content_main,f)
-              .commit();
+      Intent t = new Intent(CurrentLine.this, MainActivity.class);
+      startActivity(t);
 
     }
 

@@ -22,7 +22,7 @@
     android:fitsSystemWindows="true"
     app:headerLayout="@layout/nav_header_current_line"
     app:menu="@menu/activity_current_line_drawer"
-    app:itemIconTint="?attr/colorAccent"
-    app:itemTextColor="?android:attr/colorAccent"/>
+    app:itemIconTint="@color/wallet_dim_foreground_inverse_holo_dark"
+    app:itemTextColor="@color/wallet_dim_foreground_inverse_holo_dark"/>
 
 </android.support.v4.widget.DrawerLayout>

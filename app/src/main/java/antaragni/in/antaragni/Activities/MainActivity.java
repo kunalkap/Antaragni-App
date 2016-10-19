@@ -35,16 +35,36 @@ public class MainActivity extends AppCompatActivity
   CircularImageView headerImage;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+    Intent i= getIntent();
+
     super.onCreate(savedInstanceState);
+    fragmentManager=getSupportFragmentManager();
     setContentView(R.layout.activity_main);
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
-    Fragment fragment= new MainFragment();
-    fragmentManager=getSupportFragmentManager();
-    fragmentManager.beginTransaction()
-        .add(R.id.content_main,fragment)
-        .addToBackStack(null)
-        .commit();
+    if(i.getExtras()!=null) {
+      String s = i.getExtras().get("starter").toString();
+      if(s.equals("current")) {
+        Fragment f = new ContactFragment();
+        fragmentManager.beginTransaction()
+            .add(R.id.content_main, f)
+            .commit();
+      }else {
+        Fragment fragment= new MainFragment();
+        fragmentManager.beginTransaction()
+            .add(R.id.content_main,fragment)
+            .addToBackStack(null)
+            .commit();
+      }
+
+    }else {
+      Fragment fragment= new MainFragment();
+      fragmentManager.beginTransaction()
+          .add(R.id.content_main,fragment)
+          .addToBackStack(null)
+          .commit();
+    }
+
     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
     fab.setOnClickListener(new View.OnClickListener() {
       @Override

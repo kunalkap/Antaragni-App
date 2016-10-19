@@ -23,8 +23,8 @@
     app:headerLayout="@layout/nav_header_main"
     app:menu="@menu/activity_main_drawer"
     android:background="?android:attr/colorBackground"
-    app:itemIconTint="@android:color/holo_red_dark"
-    app:itemTextColor="@android:color/holo_red_dark"
+    app:itemIconTint="@color/wallet_dim_foreground_inverse_holo_dark"
+    app:itemTextColor="@color/wallet_dim_foreground_inverse_holo_dark"
     android:theme="@style/AppTheme"/>
 
 </android.support.v4.widget.DrawerLayout>

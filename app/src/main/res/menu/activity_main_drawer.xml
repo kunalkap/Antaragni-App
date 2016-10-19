@@ -20,13 +20,14 @@
       android:icon="@drawable/ic_people_black_24dp"
       android:title="Competitions" />
     <item
-      android:id="@+id/nav_past_line"
-      android:icon="@drawable/ic_grade_black_24dp"
-      android:title="Past Line Up"/>
-    <item
       android:id="@+id/nav_current_line"
       android:icon="@drawable/ic_star_half_black_24dp"
       android:title="Current Line Up"/>
+    <item
+      android:id="@+id/nav_past_line"
+      android:icon="@drawable/ic_grade_black_24dp"
+      android:title="Past Line Up"/>
+
     </group>
   <group android:id="@+id/grp2"
     android:checkableBehavior="single">
