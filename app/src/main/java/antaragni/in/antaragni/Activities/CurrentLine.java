@@ -36,7 +36,7 @@ public class CurrentLine extends AppCompatActivity
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
     WebView myWebView = (WebView) findViewById(R.id.webview);
-    myWebView.loadUrl("https://www.antaragni.in/currentLineUp");
+    myWebView.loadUrl("https://www.antaragni.in/currentLineUp_app");
     WebSettings webSettings = myWebView.getSettings();
     webSettings.setJavaScriptEnabled(true);
 

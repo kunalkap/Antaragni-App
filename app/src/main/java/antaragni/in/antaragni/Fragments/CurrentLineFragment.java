@@ -83,10 +83,10 @@ public class CurrentLineFragment extends Fragment {
                            Bundle savedInstanceState) {
     // Inflate the layout for this fragment
     View v=inflater.inflate(R.layout.fragment_current_line, container, false);
-    WebView myWebView = (WebView) v.findViewById(R.id.webviewc);
+    WebView myWebView = (WebView) v.findViewById(R.id.webviewcf);
     WebSettings webSettings = myWebView.getSettings();
     webSettings.setJavaScriptEnabled(true);
-    myWebView.loadUrl("https://www.antaragni.in/"+mParam1);
+    myWebView.loadUrl("https://www.antaragni.in/"+mParam1+"_app");
 
     return v;
   }

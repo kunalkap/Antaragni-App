@@ -10,6 +10,7 @@ import antaragni.in.antaragni.serverFields.ContactSchema;
 import antaragni.in.antaragni.serverFields.CurrentLine;
 import antaragni.in.antaragni.serverFields.ImageModel;
 import antaragni.in.antaragni.DataModels.subEvent;
+import antaragni.in.antaragni.serverFields.link;
 import antaragni.in.antaragni.serverFields.scheduleparser;
 import rx.Observable;
 import rx.Scheduler;
@@ -58,5 +59,8 @@ public class DataManager {
   }
   public Observable<ArrayList<ContactSchema>> getContacts() {
     return mService.getContacts();
+  }
+  public Observable<link> getAbout() {
+    return mService.getAbout();
   }
 }

@@ -1,6 +1,7 @@
 package antaragni.in.antaragni.Activities;
 
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.view.View;
 
 import com.github.siyamed.shapeimageview.CircularImageView;
 
+import antaragni.in.antaragni.Fragments.About_fragment;
 import antaragni.in.antaragni.Fragments.Competitions;
 import antaragni.in.antaragni.Fragments.ContactFragment;
 import antaragni.in.antaragni.Fragments.GridFragment;
@@ -34,7 +36,6 @@ public class MainActivity extends AppCompatActivity
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-
     setContentView(R.layout.activity_main);
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
@@ -137,7 +138,11 @@ public class MainActivity extends AppCompatActivity
 .commit();
 
     }else if (id== R.id.nav_about)
-    {
+    {    Fragment f= new About_fragment();
+      fragmentManager.beginTransaction()
+              .replace(R.id.content_main,f)
+              .commit();
+
 
     }
     else if (id==R.id.nav_current_line){

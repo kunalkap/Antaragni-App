@@ -87,7 +87,7 @@ public class ContactFragment extends Fragment {
     // Inflate the layout for this fragment
     // don't look at this layout it's just a listView to show how to handle the keyboard
     View rv= inflater.inflate(R.layout.fragment_current_line, container, false);
-    WebView myWebView = (WebView) rv.findViewById(R.id.webview);
+    WebView myWebView = (WebView) rv.findViewById(R.id.webviewcf);
     WebSettings webSettings = myWebView.getSettings();
     webSettings.setJavaScriptEnabled(true);
     myWebView.loadUrl("https://www.antaragni.in/contact");
