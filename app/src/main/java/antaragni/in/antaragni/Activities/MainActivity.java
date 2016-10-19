@@ -68,12 +68,11 @@ public class MainActivity extends AppCompatActivity
 
   @Override
   public void onBackPressed() {
-    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-    if (drawer.isDrawerOpen(GravityCompat.START)) {
-      drawer.closeDrawer(GravityCompat.START);
-    } else {
-      super.onBackPressed();
-    }
+    Fragment f= new MainFragment();
+    fragmentManager.beginTransaction()
+            .replace(R.id.content_main,f)
+            .commit();
+
   }
 
   @Override
@@ -107,19 +106,19 @@ public class MainActivity extends AppCompatActivity
       Fragment f= Competitions.newInstance("comp","competitions");
       fragmentManager.beginTransaction()
           .replace(R.id.content_main,f)
-          .addToBackStack(null).commit();
+          .commit();
 
     } else if (id == R.id.nav_contact) {
       Fragment f= new ContactFragment();
       fragmentManager.beginTransaction()
           .replace(R.id.content_main,f)
-          .addToBackStack(null).commit();
+         .commit();
 
     } else if (id == R.id.nav_Home) {
       Fragment f= new MainFragment();
       fragmentManager.beginTransaction()
           .replace(R.id.content_main,f)
-          .addToBackStack(null).commit();
+              .commit();
 
     } else if (id == R.id.nav_schedule){
       Intent t = new Intent(MainActivity.this,Scheduler.class);
@@ -129,13 +128,13 @@ public class MainActivity extends AppCompatActivity
       Fragment f= GridFragment.newInstance("past","pastline");
       fragmentManager.beginTransaction()
           .replace(R.id.content_main,f)
-          .addToBackStack(null).commit();
+         .commit();
 
     } else if (id == R.id.nav_sponsors) {
       Fragment f= new Sponsors();
       fragmentManager.beginTransaction()
           .replace(R.id.content_main,f)
-          .addToBackStack(null).commit();
+.commit();
 
     }else if (id== R.id.nav_about)
     {
