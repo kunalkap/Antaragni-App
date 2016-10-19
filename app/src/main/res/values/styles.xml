@@ -1,26 +1,32 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/red</item>
-        <item name="colorPrimaryDark">@android:color/holo_orange_dark</item>
-        <item name="colorAccent">@android:color/holo_red_dark</item>
-        <item name="android:listDivider">@android:color/holo_red_dark</item>
-        <item name="android:textColorPrimary">@android:color/primary_text_dark_nodisable</item>
-        <item name="android:textColorPrimaryInverse">@android:color/primary_text_light_nodisable
-        </item>
-        <item name="android:colorBackground">@color/orange_light</item>
-    </style>
+  <!-- Base application theme. -->
+  <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <!-- Customize your theme here. -->
+    <item name="colorPrimary">@color/red</item>
+    <item name="colorPrimaryDark">@android:color/holo_orange_dark</item>
+    <item name="colorAccent">@android:color/holo_red_dark</item>
+    <item name="android:listDivider">@android:color/holo_red_dark</item>
+    <item name="android:textColorPrimary">@android:color/primary_text_dark_nodisable</item>
+    <item name="android:textColorPrimaryInverse">@android:color/primary_text_light_nodisable
+    </item>
+    <item name="android:colorBackground">@color/orange_light</item>
+  </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="colorPrimary">@color/cast_intro_overlay_button_background_color</item>
-    </style>
+  <style name="AppTheme.NoActionBar">
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+    <item name="colorPrimary">@color/cast_intro_overlay_button_background_color</item>
+  </style>
+  <style name="MaterialAnimations" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <item name="android:windowContentTransitions">true</item>
+    <item name="android:windowEnterTransition">@transition/explode</item>
+    <item name="android:windowExitTransition">@transition/explode</item>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+  </style>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+  <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+  <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
 </resources>

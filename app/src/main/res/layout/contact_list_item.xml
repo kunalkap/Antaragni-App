@@ -22,15 +22,24 @@
     android:layout_gravity="center_horizontal"
     android:gravity="center"
     android:id="@android:id/text1"
-    android:layout_width="match_parent"/>
-
+    android:layout_width="match_parent"
+    android:textColor="@color/holo_brown"/>
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:id="@+id/position"
+    android:gravity="center"
+    android:layout_gravity="center_horizontal"
+    android:textColor="@color/black"/>
   <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:textAppearance="?android:attr/textAppearanceLarge"
     android:id="@+id/contact_num"
     android:gravity="center"
-    android:layout_gravity="center_horizontal"/>
+    android:layout_gravity="center_horizontal"
+    android:textColor="@color/black"/>
 
   <TextView
     android:layout_width="match_parent"
@@ -38,7 +47,8 @@
     android:textAppearance="?android:attr/textAppearanceLarge"
     android:id="@+id/email"
     android:gravity="center"
-    android:layout_gravity="center_horizontal"/>
+    android:layout_gravity="center_horizontal"
+    android:textColor="@color/black"/>
 
 
 </LinearLayout>
