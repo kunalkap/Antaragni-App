@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class MainFragment extends Fragment {
   private final static String ARG_PARAM1="sponsor";
   private String tab="home";
   private String mParam;
+  private View mProgressContainer;
   public MainFragment() {
 
   }
@@ -65,6 +67,7 @@ public class MainFragment extends Fragment {
                            Bundle savedInstanceState) {
     // Inflate the layout for this fragment
     View v= inflater.inflate(R.layout.fragment_main, container, false);
+    mProgressContainer = v.findViewById(R.id.progress_container);
     mImageRecycler = (ListView) v.findViewById(R.id.imageView);
     mRecyclerAdapter = new ImageAdapter(null,getActivity(),tab);
     mImageRecycler.setAdapter(mRecyclerAdapter);
@@ -106,6 +109,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onCompleted() {
               Log.v("heloo","get is successssssss@@@@@@@@@@@@2");
+              setListShown();
             }
 
             @Override
@@ -134,6 +138,17 @@ public class MainFragment extends Fragment {
       throw new RuntimeException(context.toString()
           + " must implement OnFragmentInteractionListener");
     }
+  }
+
+  protected void setListShown() {
+    fadeswitch(getActivity(), mImageRecycler, mProgressContainer);
+  }
+
+  public static void fadeswitch(Context context, View fadein, View fadeout) {
+    fadeout.startAnimation(AnimationUtils.loadAnimation(context, android.R.anim.fade_out));
+    fadein.startAnimation(AnimationUtils.loadAnimation(context, android.R.anim.fade_in));
+    fadeout.setVisibility(View.GONE);
+    fadein.setVisibility(View.VISIBLE);
   }
 
   @Override

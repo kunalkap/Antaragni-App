@@ -96,6 +96,8 @@ public class GridFragment extends Fragment {
             @Override
             public void onCompleted() {
               Log.v("heloo","get is successssssss@@@@@@   past");
+              recylclerAdapter.imageLinks=eventlist;
+              recylclerAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -110,9 +112,7 @@ public class GridFragment extends Fragment {
             @Override
             public void onNext(ArrayList<ImageModel> list) {
              eventlist=list;
-              recylclerAdapter.imageLinks=eventlist;
-              Log.v("helllooooo",""+list.get(0).url.get(0).image.filename+" this is the name");
-              recylclerAdapter.notifyDataSetChanged();
+
             }
           }));
 

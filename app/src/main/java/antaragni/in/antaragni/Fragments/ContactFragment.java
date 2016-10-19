@@ -156,7 +156,7 @@ public class ContactFragment extends Fragment {
         avatar = (CircularImageView) view.findViewById(R.id.avatar);
         mNumber = (TextView) view.findViewById(R.id.contact_num);
         mEmail = (TextView) view.findViewById(R.id.email);
-        mName = (TextView) view.findViewById(R.id.text1);
+        mName = (TextView) view.findViewById(R.id.name);
         mPost=(TextView) view.findViewById(R.id.position);
       }
 

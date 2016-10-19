@@ -3,8 +3,10 @@ package antaragni.in.antaragni.DataHandler;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.opengl.Visibility;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
 import java.io.File;
@@ -24,6 +26,8 @@ import java.util.concurrent.Executors;
 
 import antaragni.in.antaragni.R;
 import antaragni.in.antaragni.Utilities.utils;
+
+import static antaragni.in.antaragni.R.id.imageView;
 
 /**
  * Created by varun on 17/10/16.
@@ -46,14 +50,10 @@ public class ImageLoader {
   public ImageLoader(Context context){
 
     fileCache = new FileCache(context);
-
-    // Creates a thread pool that reuses a fixed number of
-    // threads operating off a shared unbounded queue.
     executorService= Executors.newFixedThreadPool(5);
 
   }
 
-  // default image show in list (Before online image download)
   final int stub_id= R.drawable.ic_import_export_black_36dp;
 
   public void DisplayImage(String url, ImageView imageView)
@@ -75,7 +75,7 @@ public class ImageLoader {
       queuePhoto(url, imageView);
 
       //Before downloading image show default image
-      imageView.setImageResource(stub_id);
+
     }
   }
 
@@ -83,11 +83,6 @@ public class ImageLoader {
   {
     // Store image and url in PhotoToLoad object
     PhotoToLoad p = new PhotoToLoad(url, imageView);
-
-    // pass PhotoToLoad object to PhotosLoader runnable class
-    // and submit PhotosLoader runnable to executers to run runnable
-    // Submits a PhotosLoader runnable task for execution
-
     executorService.submit(new PhotosLoader(p));
   }
 
