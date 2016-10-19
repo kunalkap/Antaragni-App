@@ -36,9 +36,10 @@ public class CurrentLine extends AppCompatActivity
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
     WebView myWebView = (WebView) findViewById(R.id.webview);
+    myWebView.loadUrl("https://www.antaragni.in/currentLineUp");
     WebSettings webSettings = myWebView.getSettings();
     webSettings.setJavaScriptEnabled(true);
-    myWebView.loadUrl("https://www.antaragni.in/currentLineUp");
+
     fragmentManager=getSupportFragmentManager();
     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
     fab.setOnClickListener(new View.OnClickListener() {

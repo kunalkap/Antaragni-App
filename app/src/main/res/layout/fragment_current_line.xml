@@ -13,8 +13,9 @@
     android:id="@+id/current_line_recycler">
   </android.support.v7.widget.RecyclerView>
   <WebView  xmlns:android="http://schemas.android.com/apk/res/android"
-      android:id="@+id/contact_view"
-      android:layout_width="357dp"
-      android:layout_height="530dp"
-      android:layout_weight="0.38" />
+      android:id="@+id/webviewc"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      />
+
 </LinearLayout>
