@@ -48,7 +48,6 @@
       android:id="@+id/extras"
       />
 -->
->>>>>>> pre markdown season
   </LinearLayout>
 </android.support.v7.widget.CardView>
 </LinearLayout>
