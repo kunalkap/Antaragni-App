@@ -9,7 +9,7 @@
 
   <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
     <!-- Customize your theme here. -->
-    <item name="colorPrimary">@color/red</item>
+    <item name="colorPrimary">@color/colorPrimary</item>
     <item name="colorPrimaryDark">@android:color/holo_orange_dark</item>
     <item name="colorAccent">@android:color/holo_red_dark</item>
     <item name="android:navigationBarColor">@android:color/background_dark</item>

@@ -51,7 +51,7 @@ public class RetrofitAddOn {
           public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
             if (utils.isNetworkAvailable(context)) {
-              request = request.newBuilder().header("Cache-Control", "public, max-age=" + 60).build();
+              request = request.newBuilder().header("Cache-Control", "public, max-age=" + 10).build();
             } else {
               request = request.newBuilder().header("Cache-Control", "public, only-if-cached, max-stale=" + 60 * 60 * 24).build();
             }

@@ -39,6 +39,7 @@ public class CurrentLine extends AppCompatActivity
     myWebView.loadUrl("https://www.antaragni.in/currentLineUp_app");
     WebSettings webSettings = myWebView.getSettings();
     webSettings.setJavaScriptEnabled(true);
+    webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
 
     fragmentManager=getSupportFragmentManager();
     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
