@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Antaragni.iml" filepath="$PROJECT_DIR$/Antaragni.iml" />
       <module fileurl="file://$PROJECT_DIR$/Antaragni-App.iml" filepath="$PROJECT_DIR$/Antaragni-App.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
