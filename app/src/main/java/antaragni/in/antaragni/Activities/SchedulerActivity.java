@@ -78,7 +78,8 @@ public class SchedulerActivity extends AppCompatActivity {
     fragmentManager=getSupportFragmentManager();
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
-
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setDisplayShowHomeEnabled(true);
     // Set up the ViewPager with the sections adapter.
     mViewPager = (ViewPager) findViewById(R.id.container);
 
@@ -99,7 +100,17 @@ public class SchedulerActivity extends AppCompatActivity {
   }
 
 
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    // handle arrow click here
+    if (item.getItemId() == android.R.id.home) {
+      Intent i = new Intent(SchedulerActivity.this,MainActivity.class);
+      startActivity(i);
+      // close this activity and return to preview activity (if there is any)
+    }
 
+    return super.onOptionsItemSelected(item);
+  }
   /**
    * A placeholder fragment containing a simple view.
    */

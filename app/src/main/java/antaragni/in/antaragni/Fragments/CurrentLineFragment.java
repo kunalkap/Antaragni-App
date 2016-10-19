@@ -25,6 +25,7 @@ import antaragni.in.antaragni.DataHandler.DataManager;
 import antaragni.in.antaragni.DataHandler.RetrofitAddOn;
 import antaragni.in.antaragni.OnFragmentInteractionListener;
 import antaragni.in.antaragni.R;
+import antaragni.in.antaragni.Utilities.utils;
 import antaragni.in.antaragni.serverFields.CurrentLine;
 import antaragni.in.antaragni.serverFields.ImageModel;
 import retrofit2.adapter.rxjava.HttpException;
@@ -88,7 +89,11 @@ public class CurrentLineFragment extends Fragment {
     webSettings.setJavaScriptEnabled(true);
     myWebView.loadUrl("https://www.antaragni.in/"+mParam1+"_app");
     webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-    myWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+    if(utils.isNetworkAvailable(getActivity()))
+      webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+    else
+      webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+
     return v;
   }
 
