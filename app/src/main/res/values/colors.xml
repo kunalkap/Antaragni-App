@@ -8,4 +8,8 @@
   <color name="red">#ffb012</color>
   <color name="redd">#d30202</color>
   <color name="orange_light">#fff0dc</color>
+  <color name="md_yellow_100">#FFF9C4</color>
+  <color name="md_yellow_A100">#FFFF82</color>
+  <color name="md_green_A1001">#F0F4C3</color>
+  <color name="black">#212121</color>
 </resources>

@@ -1,10 +1,7 @@
 package antaragni.in.antaragni.DataHandler;
 
-import android.icu.util.Currency;
-
 import java.util.ArrayList;
 
-import antaragni.in.antaragni.Activities.Scheduler;
 import antaragni.in.antaragni.DataModels.Category;
 import antaragni.in.antaragni.serverFields.ContactSchema;
 import antaragni.in.antaragni.serverFields.CurrentLine;
@@ -31,8 +28,8 @@ public interface DataService {
   @GET("database/events")
   Observable<ArrayList<Category>> allEvents();
 
-  @GET("database/schedule")
-  Observable<ArrayList<scheduleparser>> getSchedule();
+  @GET("database/schedule/{type}")
+  Observable<ArrayList<scheduleparser>> getSchedule(@Path("type") String type);
 
   @GET("database/sponsors")
   Observable<ArrayList<ImageModel>> allSponsors();

@@ -57,6 +57,7 @@ public class ContactFragment extends Fragment {
   private CompositeSubscription mSubscriptions;
   private DataManager mDataManager;
   public SimpleStringRecyclerViewAdapter recylclerAdapter;
+  public ArrayList<ContactSchema> data;
   public RecyclerView mRecyclerView;
 
 
@@ -86,6 +87,7 @@ public class ContactFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     // Inflate the layout for this fragment
     // don't look at this layout it's just a listView to show how to handle the keyboard
+    recylclerAdapter=new SimpleStringRecyclerViewAdapter(getActivity(), null);
     View rv= inflater.inflate(R.layout.fragment_current_line, container, false);
     WebView myWebView = (WebView) rv.findViewById(R.id.webviewcf);
     WebSettings webSettings = myWebView.getSettings();
@@ -94,7 +96,7 @@ public class ContactFragment extends Fragment {
 
     mRecyclerView=(RecyclerView) rv.findViewById(R.id.current_line_recycler);
     mRecyclerView.setLayoutManager(new LinearLayoutManager(mRecyclerView.getContext()));
-    mRecyclerView.setAdapter(new SimpleStringRecyclerViewAdapter(getActivity(), null));
+    mRecyclerView.setAdapter(recylclerAdapter);
     return rv;
   }
 
@@ -106,6 +108,8 @@ public class ContactFragment extends Fragment {
           @Override
           public void onCompleted() {
             Log.v("heloo","get is successssssss@@@@@@   past");
+            recylclerAdapter.mValues=data;
+            recylclerAdapter.notifyDataSetChanged();
           }
 
           @Override
@@ -119,9 +123,9 @@ public class ContactFragment extends Fragment {
 
           @Override
           public void onNext(ArrayList<ContactSchema> list) {
-            recylclerAdapter.mValues=list;
+            data=list;
             Log.v("heloo","working is awesome here");
-            recylclerAdapter.notifyDataSetChanged();
+
           }
         }));
 
@@ -144,6 +148,7 @@ public class ContactFragment extends Fragment {
       public final TextView mName;
       public final TextView mNumber;
       public final TextView mEmail;
+      public final TextView mPost;
 
       public ViewHolder(View view) {
         super(view);
@@ -151,7 +156,8 @@ public class ContactFragment extends Fragment {
         avatar = (CircularImageView) view.findViewById(R.id.avatar);
         mNumber = (TextView) view.findViewById(R.id.contact_num);
         mEmail = (TextView) view.findViewById(R.id.email);
-        mName = (TextView) view.findViewById(android.R.id.text1);
+        mName = (TextView) view.findViewById(R.id.text1);
+        mPost=(TextView) view.findViewById(R.id.position);
       }
 
       @Override
@@ -185,6 +191,7 @@ public class ContactFragment extends Fragment {
         holder.mName.setText(text);
         holder.mNumber.setText(mValues.get(position).getnumber());
         holder.mEmail.setText(mValues.get(position).getEmail());
+        holder.mPost.setText(mValues.get(position).getHeading());
         holder.mView.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {

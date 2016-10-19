@@ -31,15 +31,36 @@
     android:id="@+id/image"
     />
 
-  <android.support.v7.widget.RecyclerView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/horizontal_scroll"
-    android:orientation="horizontal"
-      android:scrollbars="horizontal"
-      android:scrollbarSize="@dimen/cardview_default_elevation"
-      android:scrollbarStyle="insideOverlay">
-  </android.support.v7.widget.RecyclerView>
+    <TabHost
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TabWidget
+          android:id="@android:id/tabs"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"/>
+
+        <FrameLayout
+          android:id="@android:id/tabcontent"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
+
+
+          <android.support.v7.widget.RecyclerView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/horizontal_scroll"
+            android:orientation="horizontal"></android.support.v7.widget.RecyclerView>
+
+        </FrameLayout>
+      </LinearLayout>
+    </TabHost>
 
 
 

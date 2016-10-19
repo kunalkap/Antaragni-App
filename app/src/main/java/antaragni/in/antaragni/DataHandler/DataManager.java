@@ -45,8 +45,8 @@ public class DataManager {
   public Observable<ArrayList> allContacts() {
     return mService.allContacts();
   }
-  public Observable<ArrayList<scheduleparser>> getSchedule() {
-    return mService.getSchedule();
+  public Observable<ArrayList<scheduleparser>> getSchedule(String type) {
+    return mService.getSchedule(type);
   }
   public Observable<ArrayList<ImageModel>> pastlineup() {
     return mService.pastLineup();
