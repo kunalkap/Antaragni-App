@@ -182,12 +182,13 @@ public class ContactFragment extends Fragment {
       view.setBackgroundResource(mBackground);
       return new ViewHolder(view);
     }
-
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
       if(mValues!=null) {
         holder.mBoundString = mValues.get(position).text;
         String text = mValues.get(position).text;
+
+        final String string =mValues.get(position).getEmail();
         holder.mName.setText(text);
         holder.mNumber.setText(mValues.get(position).getnumber());
         holder.mEmail.setText(mValues.get(position).getEmail());
@@ -217,6 +218,14 @@ public class ContactFragment extends Fragment {
                     if (intent1.resolveActivity(getActivity().getPackageManager()) != null) {
                       startActivity(intent1);
                     }
+                    break;
+                  case R.id.mail:
+                    Intent intent2 = new Intent(Intent.ACTION_SEND);
+                    intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent2.setType("vnd.android.cursor.item/email");
+                    intent2.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {string});
+                    startActivity(Intent.createChooser(intent2, "Send mail using..."));
+
                     break;
                 }
               }

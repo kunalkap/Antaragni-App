@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-  <item android:id="@+id/call" android:title="Call" android:icon="@drawable/ic_import_export_black_36dp"/>
-  <item android:id="@+id/save" android:title="Save to contacts" android:icon="@drawable/ic_menu_share"/>
+  <item android:id="@+id/call" android:title="Call" android:icon="@drawable/ic_call_black_24dp"/>
+  <item android:id="@+id/save" android:title="Save to contacts" android:icon="@drawable/ic_local_offer_black_24dp"/>
+  <item android:id="@+id/mail" android:title="Mail" android:icon="@drawable/ic_email_black_24dp"/>
 </menu>
